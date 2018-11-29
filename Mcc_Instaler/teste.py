@@ -17,27 +17,39 @@ class InstalManager:
     pre_requisitos = 0
 
 
+    def criar_repo_mongo(self):
+        mongo_repo = '[mongodb-org-4.0]\n' \
+                     'name=MongoDB Repository\n' \
+                     'baseurl=https://repo.mongodb.org/yum/redhat/7Server/mongodb-org/4.0/x86_64/\n' \
+                     'gpgcheck=1\n' \
+                     'enabled=1\n' \
+                     'gpgkey=https://www.mongodb.org/static/pgp/server-4.0.asc'
+        InstalManager.escrever('mongodb-org.repo', mongo_repo)
+        teste_if = os.system('sudo mv mongodb-org.repo /etc/yum.repos.d/mongodb-org.repo')
+        if teste_if != 1:
+            sucesso = 'Arquivo criado e movido com sucesso!'
+            return sucesso
+        else:
+            erro = 'Diretório /etc/yum.repos.d/mongodb-org.repo não localizado!'
+            return erro
+
+
+
 
     def instalation(self):
+        success = 'Os componentes foram instalados com sucesso!'
+        erro = 'Os pré requisitos não foram satisfeitos!'
         if self.pre_requisitos == 1:
-            erro = 'Os pré requisitos não foram satisfeitos!'
+
             return erro
         else:
             #Criar/alocar o arquivo de repositório do mongo.
-            mongo_repo = '[mongodb-org-4.0]\n' \
-                         'name=MongoDB Repository\n' \
-                         'baseurl=https://repo.mongodb.org/yum/redhat/7Server/mongodb-org/4.0/x86_64/\n' \
-                         'gpgcheck=1\n' \
-                         'enabled=1\n' \
-                         'gpgkey=https://www.mongodb.org/static/pgp/server-4.0.asc'
-            InstalManager.escrever('mongodb-org.repo', mongo_repo)
-            os.system('sudo mv mongodb-org.repo /etc/yum.repos.d/mongodb-org.repo')
-            #os.system('sudo chmod 777 PREINSTALL.sh')
-            success = 'Os componentes foram instalados com sucesso!'
-            print('')
+            mensagem = InstalManager.criar_repo_mongo(self)
+            if mensagem.__contains__("Diretório /etc/yum.repos.d/mongodb-org.repo não localizado!"):
+                return success
 
-            print('segundo teste de commit')
-            return success
+            #os.system('sudo chmod 777 PREINSTALL.sh')
+
 
 
 
@@ -119,6 +131,7 @@ class InstalManager:
         file = open('mongodb-org.repo', 'w')
 
     def teste_prerequisitos(self):
+        self.pre_requisitos = 0
 
         #Testar a instalaçãodo epel-release
         #Coletar, testar e exibir as variáveis de ambiente
