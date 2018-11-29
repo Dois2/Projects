@@ -18,19 +18,28 @@ class InstalManager:
 
 
     def criar_repo_mongo(self):
+        #Defindo os dois poss[iveis do métodos.
+        sucesso = 'Arquivo criado e movido com sucesso!'
+        erro = 'Diretório /etc/yum.repos.d/mongodb-org.repo não localizado!'
+
+        #Definindo a varíavel com os valores a serem escritos no arquivo de repositório
         mongo_repo = '[mongodb-org-4.0]\n' \
                      'name=MongoDB Repository\n' \
                      'baseurl=https://repo.mongodb.org/yum/redhat/7Server/mongodb-org/4.0/x86_64/\n' \
                      'gpgcheck=1\n' \
                      'enabled=1\n' \
                      'gpgkey=https://www.mongodb.org/static/pgp/server-4.0.asc'
+
+        #Escrever os valores de mongo_repo, no arquivo especificado
         InstalManager.escrever('mongodb-org.repo', mongo_repo)
+
+        #Se teste == 1, significa que o comando abaixo funcionou corretamente(conseguiu realocar os valores no diretório
+        # especificado)
         teste_if = os.system('sudo mv mongodb-org.repo /etc/yum.repos.d/mongodb-org.repo')
         if teste_if != 1:
-            sucesso = 'Arquivo criado e movido com sucesso!'
+
             return sucesso
         else:
-            erro = 'Diretório /etc/yum.repos.d/mongodb-org.repo não localizado!'
             return erro
 
 
