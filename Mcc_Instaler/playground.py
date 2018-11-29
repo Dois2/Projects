@@ -11,3 +11,4 @@ mongo_repo = '[mongodb-org-4.0]\n' \
 InstalManager.escrever('mongodb-org.repo', mongo_repo)
 
 
+InstalManager.instalation(InstalManager)

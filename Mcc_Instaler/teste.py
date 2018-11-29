@@ -30,7 +30,8 @@ class InstalManager:
                          'gpgcheck=1\n' \
                          'enabled=1\n' \
                          'gpgkey=https://www.mongodb.org/static/pgp/server-4.0.asc'
-            InstalManager.escrever('mongodb-org.repo', mongo_repo )
+            InstalManager.escrever('mongodb-org.repo', mongo_repo)
+            os.system('sudo mv mongodb-org.repo /etc/yum.repos.d/mongodb-org.repo')
             #os.system('sudo chmod 777 PREINSTALL.sh')
             success = 'Os componentes foram instalados com sucesso!'
             return success
