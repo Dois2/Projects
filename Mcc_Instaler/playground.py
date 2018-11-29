@@ -1,20 +1,13 @@
 from teste import InstalManager
 
-teste = InstalManager.ler_arquivo('linux_firewall.txt')
-x = 0
-y = False
-print(teste.__len__())
-while x <= teste.__len__():
-    if x>=teste.__len__():
-        break
-    var = teste[x]
-    print(var.find('SELINUX=disabled'))
-    if var.find('SELINUX=disabled') == 0:
-        print('Achou!!!!')
-    print(var)
-    x +=1
 
-var2 = var.split()
-print(var2[0])
+
+mongo_repo = '[mongodb-org-4.0]\n' \
+                         'name=MongoDB Repository\n' \
+                         'baseurl=https://repo.mongodb.org/yum/redhat/7Server/mongodb-org/4.0/x86_64/\n' \
+                         'gpgcheck=1\n' \
+                         'enabled=1\n' \
+                         'gpgkey=https://www.mongodb.org/static/pgp/server-4.0.asc'
+InstalManager.escrever('mongodb-org.repo', mongo_repo)
 
 

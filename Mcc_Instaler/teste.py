@@ -17,11 +17,21 @@ class InstalManager:
     pre_requisitos = 0
 
 
+
     def instalation(self):
         if self.pre_requisitos == 1:
             erro = 'Os pré requisitos não foram satisfeitos!'
             return erro
         else:
+            #Criar/alocar o arquivo de repositório do mongo.
+            mongo_repo = '[mongodb-org-4.0]\n' \
+                         'name=MongoDB Repository\n' \
+                         'baseurl=https://repo.mongodb.org/yum/redhat/7Server/mongodb-org/4.0/x86_64/\n' \
+                         'gpgcheck=1\n' \
+                         'enabled=1\n' \
+                         'gpgkey=https://www.mongodb.org/static/pgp/server-4.0.asc'
+            InstalManager.escrever('mongodb-org.repo', mongo_repo )
+            #os.system('sudo chmod 777 PREINSTALL.sh')
             success = 'Os componentes foram instalados com sucesso!'
             return success
 
