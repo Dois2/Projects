@@ -33,13 +33,15 @@ class InstalManager:
         #Escrever os valores de mongo_repo, no arquivo especificado
         InstalManager.escrever('mongodb-org.repo', mongo_repo)
 
-        #Se teste == 1, significa que o comando abaixo funcionou corretamente(conseguiu realocar os valores no diretório
+        #Se teste == 0, significa que o comando abaixo funcionou corretamente(conseguiu realocar os valores no diretório
         # especificado)
         teste_if = os.system('sudo mv mongodb-org.repo /etc/yum.repos.d/mongodb-org.repo')
         if teste_if != 1:
 
+            #retorno se moveu o mongo-org.repo con sucesso
             return sucesso
         else:
+            #retorno se não conseguiu mover o mongo-repo.
             return erro
 
 
@@ -48,13 +50,16 @@ class InstalManager:
     def instalation(self):
         success = 'Os componentes foram instalados com sucesso!'
         erro = 'Os pré requisitos não foram satisfeitos!'
+        #Se os pré-requisitos não foram satisfeitos, a variável self.pre-requisitos será 1;
         if self.pre_requisitos == 1:
 
+            #retorno com mensagem de erro
             return erro
         else:
             #Criar/alocar o arquivo de repositório do mongo.
             mensagem = InstalManager.criar_repo_mongo(self)
             if mensagem.__contains__("Diretório /etc/yum.repos.d/mongodb-org.repo não localizado!"):
+                #retorno caso a função foi executada corretamente
                 return success
 
             #os.system('sudo chmod 777 PREINSTALL.sh')
