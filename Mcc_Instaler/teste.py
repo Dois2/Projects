@@ -34,6 +34,9 @@ class InstalManager:
             os.system('sudo mv mongodb-org.repo /etc/yum.repos.d/mongodb-org.repo')
             #os.system('sudo chmod 777 PREINSTALL.sh')
             success = 'Os componentes foram instalados com sucesso!'
+            print('')
+
+            print('segundo teste de commit')
             return success
 
 
