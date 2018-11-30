@@ -1,14 +1,30 @@
 from teste import InstalManager
+import re
+import os
+import time
+import array as arr
+
+def shell(mensagem):
+    confirmar = os.system(mensagem)
+    if confirmar != 1:
+        return True
+    else:
+        return False
+
+def pre_install():
+    teste_prerequisitos = InstalManager.teste_prerequisitos(InstalManager)
+    if teste_prerequisitos:
+        funcionou = InstalManager.shell('sudo yum install python-pip')
+        if funcionou:
+            funcionou = InstalManager.shell('pip install --upgrade pip')
 
 
 
-mongo_repo = '[mongodb-org-4.0]\n' \
-                         'name=MongoDB Repository\n' \
-                         'baseurl=https://repo.mongodb.org/yum/redhat/7Server/mongodb-org/4.0/x86_64/\n' \
-                         'gpgcheck=1\n' \
-                         'enabled=1\n' \
-                         'gpgkey=https://www.mongodb.org/static/pgp/server-4.0.asc'
-InstalManager.escrever('mongodb-org.repo', mongo_repo)
 
 
-print(InstalManager.instalation(InstalManager))
+
+pre_install()
+
+
+
+

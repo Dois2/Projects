@@ -14,8 +14,15 @@ class InstalManager:
     a  =''
     l = ''
 
-    pre_requisitos = 0
+    def shell(mensagem):
+        confirmar = os.system(mensagem)
+        if confirmar != 1:
+            return True
+        else:
+            return False
 
+    def pre_install(self):
+        print('')
 
     def criar_repo_mongo(self):
         #Defindo os dois poss[iveis do métodos.
@@ -129,6 +136,15 @@ class InstalManager:
         #Fechar o arquivo aberto
         file.close()
 
+    def achar_path(self):
+        diretorio = '/home/centos/'
+        nome_arquivo = diretorio + '.bash_profile'
+        file = open(nome_arquivo, 'r')
+        for i in file:
+            if i.__contains__('asdafasfasdasd'):
+                return True
+        return False
+
     def escrever(file_name, escrever):
 
         #Abrir e criar o arquivo .bash_profile2 em modo de escrita
@@ -145,7 +161,7 @@ class InstalManager:
         file = open('mongodb-org.repo', 'w')
 
     def teste_prerequisitos(self):
-        self.pre_requisitos = 0
+        pre_requisitos = 0
 
         #Testar a instalaçãodo epel-release
         #Coletar, testar e exibir as variáveis de ambiente
@@ -334,23 +350,23 @@ class InstalManager:
         print('-----------------------------Pré-requisitos não satisfeitos--------------------------------------------')
         if pip_check != 0:
             print('**Pip não encontrado!')
-            self.pre_requisitos = 1
+            pre_requisitos = 1
 
         if diretorio_mcc != 0:
             print('**Diretório mcc não encontrado!'
                   '\n-----> Alocar/criar diretório "mcc", no caminho /home/centos.'
                   '\n----------> Utilizar o comando "sudo mkdir /home/centos/mcc"\n')
-            self.pre_requisitos = 1
+            pre_requisitos = 1
         if diretorio_mcc_bin != 0:
             print('**Diretório mcc/bin não encontrado!'
                   '\n-----> Alocar/criar o diretório "mcc/bin", no caminho /home/centos.'
                   '\n----------> Utilizar o comando "sudo mkdir /home/centos/mcc/bin"\n')
-            self.pre_requisitos = 1
+            pre_requisitos = 1
         if diretorio_mcc_lib != 0:
             print('**Diretório mcc/lib não encontrado!'
                   '\n-----> Alocar/criar o diretório "mcc/lib", no caminho /home/centos.'
                   '\n----------> Utilizar o comando "sudo mkdir /home/centos/mcc/lib"\n')
-            self.pre_requisitos = 1
+            pre_requisitos = 1
         if repo_mongo_check != 0:
             print('**Repositório do mongo não encontrado!'
                   '\n-----> Alocar/criar arquivo "mongodb-org.repo", no caminho /etc/yum.repos.d.'
@@ -362,17 +378,17 @@ class InstalManager:
                   '\n---------------> gpgcheck=1'
                   '\n---------------> enabled=1'
                   '\n---------------> gpgkey=https://www.mongodb.org/static/pgp/server-4.0.asc\n')
-            self.pre_requisitos = 1
+            pre_requisitos = 1
         if mongo_instal_check != 0:
             print('**Instalação do mongo não encontrada!'
                   '\n-----> Realizar a instalação do MongoDB(ATENÇÃO, NECESSÁRIO POSSUIR REPOSITÓRIO "/etc/yum.repos.d/mongodb-org.repo" )'
                   '\n----------> Com o repositório criado, utilizar o comando "sudo yum install mongodb-org"\n')
-            self.pre_requisitos = 1
+            pre_requisitos = 1
         if mongo_conf_check != 0:
             print('**Arquivo de configuração do mongo não encontrado!'
                   '\n-----> Alocar/criar o arquivo "mongod.conf" no diretório "/etc/"'
                   '\n----------> Utilizar o comando "sudo nano /etc/mongod.conf"\n')
-            self.pre_requisitos = 1
+            pre_requisitos = 1
         if mongo_conect_check != 0:
             print('**Arquivo de conexão do mongo não encontrado!'
                   '\n-----> Alocar/criar o arquivo "99-mongodb-nproc.conf", no diretório "/etc/security/limits.d"'
@@ -382,17 +398,17 @@ class InstalManager:
                   '\n----------> mongod hard nofile 64000'
                   '\n----------> mongod soft nproc 64000'
                   '\n----------> mongod hard nproc 64000\n')
-            self.pre_requisitos = 1
+            pre_requisitos = 1
         if firewall_check != 0:
             print('**Arquivo de firewall não encontrado!'
                   '\n-----> Editar/adicionar os valores necessários a fim de satisfazer este requisito!'
                   '\n----------> Verificar se o arquivo "/etc/selinux/config", se possui os valores "SELINUX=disabled"\n')
-            self.pre_requisitos = 1
+            pre_requisitos = 1
         if config_json_check != 0:
             print('**Arquivo config.json não encontrado!'
                   '\n-----> Alocar/criar o arquivo "config.json", no diretório "/home/centos/bin"'
                   '\n----------> Este arquyivo é responsável por fornecer a conexão do mongo aos nossos módulos!\n')
-            self.pre_requisitos = 1
+            pre_requisitos = 1
         if node_check != 0:
             print('**Instalação do node não encontrada!'
                   '\n-----> Para realizar a instalação, seguir os passos abaixo:'
@@ -401,24 +417,27 @@ class InstalManager:
                   '\n----------> Copiar o link e utilizar o comando: "sudo wget + link copiado"'
                   '\n----------> Descompactar com: "sudo tar -xvfz + nome do arquivo.tar.gz"'
                   '\n----------> Dentro da pasta descompactada, utilizar os comandos: "./configure", "sudo make" e "sudo make install"\n')
-            self.pre_requisitos = 1
+            pre_requisitos = 1
         if gcc_check != 0:
             print('**Instalação do gcc não encontrada!'
                   '\n-----> Necessário GCC para instalar o Node!'
                   '\n----------> Utilizar o comando "yum install gcc gcc-c++"\n')
-            self.pre_requisitos = 1
+            pre_requisitos = 1
         if caminho_oracle != 0:
             print('**Oracle não encontrado!'
                   '\n-----> Baixar a última versão do Oracle.rpm, através do link "https://www.oracle.com/technetwork/topics/linuxx86-64soft-092277.html"'
                   '\n----------> Descompactar e enviar para nosso servidor atravéz do serviço SFTP'
                   '\n----------> Instalar utilizando o comando "sudo yum localinstall oracle* --nogpcheck"'
                   '\n----------> ATENÇÃO, ALOCAR AS VARIÁVEIS DE AMBIENTE ORACLE_HOME\n')
-            self.pre_requisitos = 1
+            pre_requisitos = 1
         if npm_check != 0:
             print('**Instalação do NPM não encontrada!')
-            self.pre_requisitos = 1
+            pre_requisitos = 1
         print('-------------------------------------------------------------------------------------------------------')
-
+        if pre_requisitos == 0:
+            return True
+        if pre_requisitos == 1:
+            return False
 
 
 
