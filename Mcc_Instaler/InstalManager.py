@@ -36,6 +36,10 @@ class InstalManager:
                 else:
                     print('Erro no comando: {}'.format(a[x]))
                     break
+        else:
+            print('Os pré-requisitos não foram atendidos. Por favor, realize as alterações informadas e '
+                  'execute novamente o instalador!')
+
 
     def criar_repo_mongo(self):
         #Defindo os dois poss[iveis do métodos.
@@ -76,7 +80,7 @@ class InstalManager:
             #retorno com mensagem de erro
             return erro
         else:
-            #Criar/alocar o arquivo de repositório do mongo.
+            #Criar/alocar o arquivo de repositório do mongo
             mensagem = InstalManager.criar_repo_mongo(self)
             if mensagem.__contains__("Diretório /etc/yum.repos.d/mongodb-org.repo não localizado!"):
                 #retorno caso a função foi executada corretamente

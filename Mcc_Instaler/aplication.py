@@ -1,17 +1,23 @@
 import time
-from teste import InstalManager
+from Mcc_Instaler import InstalManager as im
 import os
 
-print('Bem vindo ao assintente de instalação do MCC!'
-      '\nAguarde enquanto estamos verificando os requisitos mínimos...')
+def fluxo_instalacao():
+      print('Bem vindo ao assistente de instalação do MCC!'
+            '\nPor favor, escolha uma de nossas opções:'
+            '\n   (1)Verificar os pré requisitos.'
+            '\n   (2)Instalar módulos.')
+      while True:
+            escolha = int(input('Escolha uma opção: '))
+            if escolha == 1:
+                  im.InstalManager.teste_prerequisitos(im)
+                  break
+            elif escolha == 2:
+                  im.InstalManager.pre_install(im)
+                  break
+            else:
+                  print('Escolha uma opção válida!')
 
 
-time.sleep(3)
-var = InstalManager()
-var.teste_prerequisitos()
-mensagem = var.instalation()
-print(mensagem)
 
-#nome_do_arquivo =  input('nome arquivo')
-#var2 = InstalManager.ler_arquivo(InstalManager, nome_do_arquivo)
-#print(var2)
+fluxo_instalacao()
