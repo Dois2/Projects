@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="593a7144-76a2-47fb-8b51-474394a22bb7" name="Default Changelist" comment="inserção de comentários">
+    <list default="true" id="593a7144-76a2-47fb-8b51-474394a22bb7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mcc_Instaler/aplication.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mcc_Instaler/aplication.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Mcc_Instaler/playground.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mcc_Instaler/playground.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mcc_Instaler/teste.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mcc_Instaler/teste.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -33,8 +31,8 @@
             <file pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/Mcc_Instaler/teste.py">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="374">
-                    <caret line="22" selection-start-line="22" selection-end-line="22" />
+                  <state relative-caret-position="5304">
+                    <caret line="312" column="31" lean-forward="true" selection-start-line="312" selection-start-column="31" selection-end-line="312" selection-end-column="31" />
                     <folding>
                       <element signature="e#0#9#0" expanded="true" />
                     </folding>
@@ -52,8 +50,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Mcc_Instaler/playground.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="121">
-              <caret line="18" column="72" lean-forward="true" selection-start-line="18" selection-start-column="72" selection-end-line="18" selection-end-column="72" />
+            <state relative-caret-position="51">
+              <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
@@ -275,7 +273,14 @@
       <option name="project" value="LOCAL" />
       <updated>1543520188620</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Alterações classe teste">
+      <created>1543581485271</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1543581485271</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TodoView">
@@ -304,7 +309,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49925596" weight="0.32850242" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32850242" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50074404" side_tool="true" weight="0.32850242" />
-      <window_info anchor="bottom" id="Python Console" order="10" />
+      <window_info anchor="bottom" id="Python Console" order="10" weight="0.32850242" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -373,7 +378,8 @@
     <MESSAGE value="função criar_repo_mongo&#10;função instalação" />
     <MESSAGE value="alteração nas funções instalation e criar_repo_mongo" />
     <MESSAGE value="inserção de comentários" />
-    <option name="LAST_COMMIT_MESSAGE" value="inserção de comentários" />
+    <MESSAGE value="Alterações classe teste" />
+    <option name="LAST_COMMIT_MESSAGE" value="Alterações classe teste" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -390,13 +396,18 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Mcc_Instaler/playground.py</url>
-          <line>7</line>
-          <option name="timeStamp" value="10" />
+          <line>10</line>
+          <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Mcc_Instaler/playground.py</url>
-          <line>15</line>
-          <option name="timeStamp" value="11" />
+          <line>12</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Mcc_Instaler/playground.py</url>
+          <line>14</line>
+          <option name="timeStamp" value="14" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -469,8 +480,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Mcc_Instaler/teste.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" selection-start-line="22" selection-end-line="22" />
+        <state relative-caret-position="5304">
+          <caret line="312" column="31" lean-forward="true" selection-start-line="312" selection-start-column="31" selection-end-line="312" selection-end-column="31" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
@@ -479,8 +490,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Mcc_Instaler/playground.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
-          <caret line="18" column="72" lean-forward="true" selection-start-line="18" selection-start-column="72" selection-end-line="18" selection-end-column="72" />
+        <state relative-caret-position="51">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
           </folding>
