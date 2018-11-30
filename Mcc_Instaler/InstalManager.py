@@ -22,7 +22,20 @@ class InstalManager:
             return False
 
     def pre_install(self):
-        print('')
+        teste_prerequisitos = InstalManager.teste_prerequisitos(InstalManager)
+        if teste_prerequisitos:
+            a = ['sudo yum install epel-release', 'yum update', 'sudo yum install python-pip',
+                 'pip install --upgrade pip',
+                 'sudo yum install mongodb-org', 'sudo setenforce permissive',
+                 'sudo yum localinstall oracle* --nogpcheck',
+                 'npm i -g mcc.startup', 'npm i -g mcc.broker', 'npm i -g mcc.processor', 'npm i -g mcc.portal']
+            for x in range(0, a.__len__()):
+                funcionou = InstalManager.shell(a[x])
+                if funcionou:
+                    x += 1
+                else:
+                    print('Erro no comando: {}'.format(a[x]))
+                    break
 
     def criar_repo_mongo(self):
         #Defindo os dois poss[iveis do métodos.
