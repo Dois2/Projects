@@ -175,5 +175,3 @@ def alocar_selinux():
 
 
 alocar_selinux()
-
-
