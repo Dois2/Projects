@@ -1,10 +1,189 @@
-from Mcc_Instaler import InstalManager as im
-import re
 import os
-import time
-import array as arr
+
+# Método utilizado para verificar a execução dos comandos no shell - OK
+def shell(comando):
+
+    # Executando o comando no shell
+    confirmar = os.system(comando)
+
+    # Definindo os retornos do método, onde True "sucesso" e False "falhou"
+    if confirmar != 1:
+        return True
+    else:
+        return False
+
+# Método responsável pela leitura dos arquivos - OK
+def ler_arquivo(caminho_do_arquivo ,nome_do_arquivo):
+    # Abrir o arquivo(nome_do_arquivo).
+    nome_ler = caminho_do_arquivo+nome_do_arquivo
+    comando_testar = 'cd {}'.format(caminho_do_arquivo)
+    if shell(comando_testar):
+
+        file = open(nome_ler, 'r')
+        print(file)
+
+        # Estrutura de repetição, reponsável por contruir uma string com os valores lidos do arquivo aberto à cima.
+
+        leitura_arquivo = file.readlines()
+
+        file.close()
+
+        return leitura_arquivo
+    else:
+        print('Arquivo/Caminho não encontrado.')
+        return False
+
+# Método utilizado para escrever o arquivo mongodb-org.repo - OK
+def escrever_arquivo_mongorepo():
+
+    # definindo o usuário, nome do arquivo e o caminho para criação do mesmo
+    usuario = input('Informe o usuário utilizado nesta instalação: ')
+    nome = 'mongodb-org.repo'
+    caminho ='/etc/yum.repos.d/'
+
+    # verificando a existencia do caminho informado
+    if shell('cd {}'.format(caminho)):
+
+        # Abrir o arquivo em formato de escrita
+        file = open(caminho+nome, 'w')
+
+        # Alocando o texto a ser escrito na variavel escrever
+        escrever = '[mongodb-org-4.0]\n' \
+                   'name=MongoDB Repository\n' \
+                   'baseurl=https://repo.mongodb.org/yum/redhat/7Server/mongodb-org/4.0/x86_64/\n' \
+                   'gpgcheck=1\n' \
+                   'enabled=1\n' \
+                   'gpgkey=https://www.mongodb.org/static/pgp/server-4.0.asc\n'
+
+        # Escrever no arquivo a estrutura montada com os valores corretos.
+        file.write(escrever)
+
+        # Fechar o arquivo aberto e informar que foi possivel escrever no diretorio especificado
+        file.close()
+        print('Arquivo "{}" criado com sucesso!'.format(caminho+nome))
+    else:
+        # Caso caminho seja inválido, exibimos a mensagem que não foi possivel escrever
+        print('Caminho "{}" inexistente'.format(caminho))
+
+# Método utilizado para escrever o arquivo config.json - OK
+def escrever_arquivo_configjson():
+    # definindo o usuário, nome do arquivo e o caminho para criação do mesmo
+    usuario = input('Informe o usuário utilizado nesta instalação: ')
+    nome = 'config.json'
+    caminho = '/home/{}/'.format(usuario)
+    arquivo_caminho = caminho + '{}'.format(nome)
+
+    # verificando a existencia do caminho informado
+    if shell('cd {}'.format(caminho)):
+
+        # Abrir o arquivo em formato de escrita
+        file = open(arquivo_caminho, 'w')
+
+
+        # Definindo o: Usuário, senha, ip, porta e nome do banco
+        user= input('Insira um usuário válido para o banco MongoDB: ')
+        senha = input('Insira uma senha válida para o banco MongoDB: ')
+        ip = input('Insira um ip válido para o banco MongoDB: ')
+        porta = input('Insira uma porta válida para o banco MongoDB: ')
+        nome_do_banco = input('Insira um nome válido para o banco MongoDB: ')
+        linha = '"database": "mongodb://{}:{}@{}:{}/{}"'.format(user, senha, ip, porta, nome_do_banco)
+
+        # Alocando o texto a ser escrito na variavel escrever
+        escrever = '{\n' \
+                   '    "mongo": {\n' +linha +'\n' +'    }\n' \
+                   '}\n'
+
+        # Escrever no arquivo a estrutura montada com os valores corretos.
+        file.write(escrever)
+
+        # Fechar o arquivo aberto e informar que foi possivel escrever no diretorio especificado
+        file.close()
+        print('Arquivo "{}" criado com sucesso!'.format(arquivo_caminho))
+    else:
+        # Caso caminho seja inválido, exibimos a mensagem que não foi possivel escrever
+        print('Caminho "{}" inexistente'.format(caminho))
+
+# Método utilizado para escrever o arquivo mongo-nproc - OK
+def escrever_arquivo_mongonproc():
+    # definindo o nome do arquivo e o caminho para criação do mesmo
+    nome = '99-mongodb-nproc.conf'
+    caminho = '/etc/security/limits.d/'
+    # caminho = 'C:\\Users\\lucas.vieira\\Documents\\CONTROLE\\MCC\\PRODUCAO\\'
+    arquivo_caminho = caminho + '{}'.format(nome)
+
+    # verificando a existencia do caminho informado
+    if shell('cd {}'.format(caminho)):
+
+        # Abrir o arquivo em formato de escrita
+        file = open(arquivo_caminho, 'w')
+
+
+        # Alocando o texto a ser escrito na variavel escrever
+        escrever = 'mongod soft nofile 64000\n' \
+                   'mongod hard nofile 64000\n' \
+                   'mongod soft nproc 64000\n' \
+                   'mongod hard nproc 64000'
+
+        # Escrever no arquivo a estrutura montada com os valores corretos.
+        file.write(escrever)
+
+        # Fechar o arquivo aberto e informar que foi possivel escrever no diretorio especificado
+        file.close()
+        print('Arquivo "{}" criado com sucesso!'.format(arquivo_caminho))
+    else:
+        # Caso caminho seja inválido, exibimos a mensagem que não foi possivel escrever
+        print('Caminho "{}" inexistente'.format(caminho))
+
+# Método utilizado para escrever o arquivo de configuração mongod -
+# def escrever_arquivo_mongod():
+#     # definindo o nome do arquivo e o caminho para criação do mesmo
+#     nome = 'mongod.conf'
+#     caminho = '/etc/'
+#     # caminho = 'C:\\Users\\lucas.vieira\\Documents\\CONTROLE\\MCC\\PRODUCAO\\'
+#     arquivo_caminho = caminho + '{}'.format(nome)
+#
+#     # verificando a existencia do caminho informado
+#     if shell('cd {}'.format(caminho)):
+#
+#         # Abrir o arquivo em formato de escrita
+#         file = open(arquivo_caminho, 'w')
+#
+#
+#         # Alocando o texto a ser escrito na variavel escrever
+#         escrever = ''
+#
+#         # Escrever no arquivo a estrutura montada com os valores corretos.
+#         file.write(escrever)
+#
+#         # Fechar o arquivo aberto e informar que foi possivel escrever no diretorio especificado
+#         file.close()
+#         print('Arquivo "{}" criado com sucesso!'.format(arquivo_caminho))
+#     else:
+#         # Caso caminho seja inválido, exibimos a mensagem que não foi possivel escrever
+#         print('Caminho "{}" inexistente'.format(caminho))
 
 
 
 
-im.InstalManager.pre_install(im)
+
+
+
+
+
+
+caminho = 'C:\\Users\\lucas.vieira\\Desktop\\'
+arquivo = 'mongod.conf'
+# arquivo_mongod = ler_arquivo(caminho, arquivo)
+
+# arquivo_mongod.append('\n')
+
+
+
+shell('copy mongod.conf C:\\Users\\lucas.vieira\\Desktop\\mongod.conf')
+
+
+# for line in arquivo_mongod:
+#     if line.startswith('  bindIp:'):
+#         lines = line.split()
+#         lines[1] = '0.0.0.0'
+#         print('Valor "{}" alterado no arquivo "{}"'.format(lines[0] + lines[1],caminho+arquivo))
