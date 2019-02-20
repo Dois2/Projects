@@ -134,56 +134,46 @@ def escrever_arquivo_mongonproc():
         # Caso caminho seja inválido, exibimos a mensagem que não foi possivel escrever
         print('Caminho "{}" inexistente'.format(caminho))
 
-# Método utilizado para escrever o arquivo de configuração mongod -
-# def escrever_arquivo_mongod():
-#     # definindo o nome do arquivo e o caminho para criação do mesmo
-#     nome = 'mongod.conf'
-#     caminho = '/etc/'
-#     # caminho = 'C:\\Users\\lucas.vieira\\Documents\\CONTROLE\\MCC\\PRODUCAO\\'
-#     arquivo_caminho = caminho + '{}'.format(nome)
-#
-#     # verificando a existencia do caminho informado
-#     if shell('cd {}'.format(caminho)):
-#
-#         # Abrir o arquivo em formato de escrita
-#         file = open(arquivo_caminho, 'w')
-#
-#
-#         # Alocando o texto a ser escrito na variavel escrever
-#         escrever = ''
-#
-#         # Escrever no arquivo a estrutura montada com os valores corretos.
-#         file.write(escrever)
-#
-#         # Fechar o arquivo aberto e informar que foi possivel escrever no diretorio especificado
-#         file.close()
-#         print('Arquivo "{}" criado com sucesso!'.format(arquivo_caminho))
-#     else:
-#         # Caso caminho seja inválido, exibimos a mensagem que não foi possivel escrever
-#         print('Caminho "{}" inexistente'.format(caminho))
+# Método para alocar o arquivo mongod.conf no diretório correto - OK
+def alocar_mongod():
+    # Definindo o caminho e o nome do arquivo
+    caminho = '/etc/'
+    nome = 'mongod.conf'
+
+    # Verificação, onde caso consigamos copiar o arquivo recebemos um retorno informando sobre isto.
+    if shell('cp {} {}'.format(nome, caminho+nome)):
+        print('Arquivo "{}" movido para "{}" com sucesso!')
+    else:
+        print('Não foi possível mover o arquivo {} para o diretório {}'.format(nome, caminho))
+
+# Método para alocar o arquivo .bash_profile no diretório correto - OK
+def alocar_bashprofile():
+    # Definindo o caminho e o nome do arquivo
+    usuario = input('Informe o usuário para editar as variáveis de ambiente: ')
+    caminho = '/home/{}/'.format(usuario)
+    nome = '.bash_profile'
 
 
+    # Verificação, onde caso consigamos copiar o arquivo recebemos um retorno informando sobre isto.
+    if shell('cp {} {}'.format(nome, caminho + nome)):
+        print('Arquivo "{}" movido para "{}" com sucesso!')
+    else:
+        print('Não foi possível mover o arquivo {} para o diretório {}'.format(nome, caminho))
+
+# Método para alocar o arquivo config no diretório correto - OK
+def alocar_selinux():
+    # Definindo o caminho e o nome do arquivo
+    caminho = '/etc/selinux/'
+    nome = 'config'
+    print(caminho+nome)
+
+    # Verificação, onde caso consigamos copiar o arquivo recebemos um retorno informando sobre isto.
+    if shell('cp {} {}'.format(nome, caminho + nome)):
+        print('Arquivo "{}" movido para "{}" com sucesso!')
+    else:
+        print('Não foi possível mover o arquivo {} para o diretório {}'.format(nome, caminho))
 
 
+alocar_selinux()
 
 
-
-
-
-
-caminho = 'C:\\Users\\lucas.vieira\\Desktop\\'
-arquivo = 'mongod.conf'
-# arquivo_mongod = ler_arquivo(caminho, arquivo)
-
-# arquivo_mongod.append('\n')
-
-
-
-shell('copy mongod.conf C:\\Users\\lucas.vieira\\Desktop\\mongod.conf')
-
-
-# for line in arquivo_mongod:
-#     if line.startswith('  bindIp:'):
-#         lines = line.split()
-#         lines[1] = '0.0.0.0'
-#         print('Valor "{}" alterado no arquivo "{}"'.format(lines[0] + lines[1],caminho+arquivo))

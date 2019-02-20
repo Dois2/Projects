@@ -14,8 +14,8 @@ class InstalManager:
     a  =''
     l = ''
 
-    def shell(mensagem):
-        confirmar = os.system(mensagem)
+    def shell(comando):
+        confirmar = os.system(comando)
         if confirmar != 1:
             return True
         else:
@@ -42,7 +42,7 @@ class InstalManager:
 
 
     def criar_repo_mongo(self):
-        #Defindo os dois poss[iveis do métodos.
+        #Defindo os dois possiveis retornos do métodos.
         sucesso = 'Arquivo criado e movido com sucesso!'
         erro = 'Diretório /etc/yum.repos.d/mongodb-org.repo não localizado!'
 
@@ -186,11 +186,15 @@ class InstalManager:
 
         #Testar a instalação do pip
         pip_arquivo = 'pip_version.txt'
+        # Alocar o resultado em um arquivo txt
         pip_check = os.system('pip --version > {}'.format(pip_arquivo))
 
         #testar os diretórios do mcc
         diretorio_existente = 'Diretório existente!'
+        # Alocar o resultado da existencia da pasta mcc em um arquivo txt
         diretorio_mcc = os.system('cd /home/centos/mcc')
+
+        # verificação da existencia dos diretórios onde diretorio_mcc =
         if diretorio_mcc == 0:
             InstalManager.escrever('diretorio_mcc.txt', diretorio_existente)
 
