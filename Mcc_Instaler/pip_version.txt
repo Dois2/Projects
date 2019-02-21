@@ -1,1 +1,0 @@
-pip 10.0.1 from C:\Users\lucas.vieira\PycharmProjects\Projects\venv\lib\site-packages\pip-10.0.1-py3.7.egg\pip (python 3.7)

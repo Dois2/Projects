@@ -1,4 +1,5 @@
 import os
+import time
 
 # Método utilizado para verificar a execução dos comandos no shell - OK
 def shell(comando):
@@ -37,7 +38,6 @@ def ler_arquivo(caminho_do_arquivo ,nome_do_arquivo):
 def escrever_arquivo_mongorepo():
 
     # definindo o usuário, nome do arquivo e o caminho para criação do mesmo
-    usuario = input('Informe o usuário utilizado nesta instalação: ')
     nome = 'mongodb-org.repo'
     caminho ='/etc/yum.repos.d/'
 
@@ -66,9 +66,8 @@ def escrever_arquivo_mongorepo():
         print('Caminho "{}" inexistente'.format(caminho))
 
 # Método utilizado para escrever o arquivo config.json - OK
-def escrever_arquivo_configjson():
+def escrever_arquivo_configjson(usuario):
     # definindo o usuário, nome do arquivo e o caminho para criação do mesmo
-    usuario = input('Informe o usuário utilizado nesta instalação: ')
     nome = 'config.json'
     caminho = '/home/{}/'.format(usuario)
     arquivo_caminho = caminho + '{}'.format(nome)
@@ -141,12 +140,12 @@ def alocar_mongod():
     nome = 'mongod.conf'
 
     # Verificação, onde caso consigamos copiar o arquivo recebemos um retorno informando sobre isto.
-    if shell('cp {} {}'.format(nome, caminho+nome)):
-        print('Arquivo "{}" movido para "{}" com sucesso!')
+    if shell('sudo cp {} {}'.format(nome, caminho+nome)):
+        print('Arquivo "{}" movido para "{}" com sucesso!'.format(nome, caminho))
     else:
         print('Não foi possível mover o arquivo {} para o diretório {}'.format(nome, caminho))
 
-# Método para alocar o arquivo .bash_profile no diretório correto - OK
+# Método para alocar o arquivo .bash_profile no diretório correto - VERIFICAR PARA UTILIZAR NA MAO
 def alocar_bashprofile():
     # Definindo o caminho e o nome do arquivo
     usuario = input('Informe o usuário para editar as variáveis de ambiente: ')
@@ -168,10 +167,220 @@ def alocar_selinux():
     print(caminho+nome)
 
     # Verificação, onde caso consigamos copiar o arquivo recebemos um retorno informando sobre isto.
-    if shell('cp {} {}'.format(nome, caminho + nome)):
-        print('Arquivo "{}" movido para "{}" com sucesso!')
+    if shell('sudo cp {} {}'.format(nome, caminho + nome)):
+        print('Arquivo "{}" movido para "{}" com sucesso!'.format(nome, caminho))
     else:
         print('Não foi possível mover o arquivo {} para o diretório {}'.format(nome, caminho))
 
+# Método para alocar o arquivo zipado do node - OK
+def alocar_instaladornode():
+    usuário = input('Informe o usuário para instalar o node: ')
+    caminho = '/home/{}/'.format(usuário)
+    nome_do_node = 'node-v8.15.0.tar.gz'
+    if shell('cp {} {}'.format(nome_do_node, caminho+nome_do_node)):
 
-alocar_selinux()
+        print("Node alocado com sucesso!")
+
+        if shell('sudo tar xvfz {}'.format(caminho+nome_do_node)):
+            print('Node descompactado com sucesso')
+            os.chdir('/home/{}/Mcc_Instaler/node-v8.15.0'.format(usuário))
+
+            shell('sudo ./configure')
+            os.chdir('/home/{}/Mcc_Instaler/node-v8.15.0'.format(usuário))
+            shell('pwd')
+            shell('sudo make')
+            os.chdir('/home/{}/Mcc_Instaler/node-v8.15.0'.format(usuário))
+            shell('pwd')
+            shell('sudo make install')
+            os.chdir('/home/{}/Mcc_Instaler/')
+            return True
+
+    else:
+        print('não foi possível alocar o node, no caminho "{}"'.format(caminho))
+        return False
+
+def alocar_instaladororcl(usuario):
+
+    caminho = '/home/{}/'.format(usuario)
+    nome_do_oracle = 'oracle-instantclient18.3-basic-18.3.0.0.0-3.x86_64.rpm'
+    if shell('cp {} {}'.format(nome_do_oracle, caminho + nome_do_oracle)):
+        print('Oracle alocado em "{}" com sucesso!\n'.format(caminho+nome_do_oracle))
+        print('Iniciando procedimento de instalação...')
+        if shell('sudo yum install {}'.format(nome_do_oracle)):
+            print('Oracle instalado com sucesso!')
+            return True
+    else:
+        print('Não foi possível alocar o node, no caminho "{}"'.format(caminho))
+        return False
+
+
+
+
+# alocar_bashprofile()
+
+
+
+
+
+
+
+# ------------------------------------------------------------------------------------------------
+def instalar_prerequisitos():
+
+    # Boas vindas ao instalador
+    print('Bem vindo ao instalador do MCC.')
+
+    usuario = input('Insira o usuário em que será realizado a instalação: ')
+
+    # Definição dos diretórios com base no usuário informado
+    caminho_mcc = '/home/{}/mcc'.format(usuario)
+    caminho_mcc_lib = '/home/{}/mcc/lib'.format(usuario)
+    caminho_mcc_bin = '/home/{}/mcc/bin'.format(usuario)
+
+
+    print('Iniciando procedimento de criação das pastas do MCC...')
+    time.sleep(3)
+    # Verificação e criação do caminho mcc
+    if shell('cd {}'.format(caminho_mcc)):
+        print('Diretório {} existente.'.format(caminho_mcc))
+    else:
+        print('Diretório {} inexistente, realizando a criação do mesmo.'.format(caminho_mcc))
+        shell('sudo mkdir {}'.format(caminho_mcc))
+
+    time.sleep(1)
+
+    # Verificação e criação do caminho mcc/lib
+    if shell('cd {}'.format(caminho_mcc_lib)):
+        print('Diretório {} existente'.format(caminho_mcc_lib))
+    else:
+        print('Diretório {} inexistente, realizando a criação do mesmo.'.format(caminho_mcc_lib))
+        shell('sudo mkdir {}'.format(caminho_mcc_lib))
+
+    time.sleep(1)
+
+    # Verificação e criação do caminho mcc/bin
+    if shell('cd {}'.format(caminho_mcc_bin)):
+        print('Diretório {} existente'.format(caminho_mcc_bin))
+    else:
+        print('Diretório {} inexistente, realizando a criação do mesmo.'.format(caminho_mcc_bin))
+        shell('sudo mkdir {}'.format(caminho_mcc_bin))
+
+
+    # Atualização do gerenciador de pacotes do LINUX(YUM)
+    print('Iniciando atualização do YUM.')
+    time.sleep(1)
+    if shell('sudo yum update'):
+        print('Gerenciador YUM atualizado com sucesso')
+        time.sleep(2)
+    else:
+        print('Erro ao atualizar o gerenciador YUM.')
+
+    # Realizar a instalação do Epel-release
+    print('Iniciando a instalação do EPEL-RELEASE.')
+    shell('sudo yum install epel-release.noarch')
+
+    # Realizar a instalação do python-pip
+    print('Iniciando a instalação do PIP...')
+    time.sleep(3)
+    shell('sudo yum install python-pip')
+
+    # Realizar o update do pip
+    print('Iniciando a atualização do PIP...')
+    time.sleep(3)
+    shell('sudo pip install --upgrade pip')
+
+
+    # Realizara instalação do Bzip, Gcc e Gcc-c++
+    print('Iniciando a instalação dos componentes: '
+          '\n   -Bzip'
+          '\n   -Gcc'
+          '\n   -Gcc-C++')
+    time.sleep(3)
+    shell('sudo yum install gcc gcc-c++ bzip2')
+
+    # Verificar e caso seja inexistente, realizar a instalação do oracle
+    if shell('cd /usr/lib/oracle/18.3'):
+        print('Instalação do oracle localizada em: /usr/lib/oracle/18.3')
+    else:
+        alocar_instaladororcl(usuario)
+
+
+
+
+
+
+
+
+
+instalar_prerequisitos()
+
+    #
+    # # Criando as pastas do mcc
+    # shell('sudo mkdir /home/{}/mcc'.format(usuario))
+    # shell('sudo mkdir /home/{}/mcc/bin'.format(usuario))
+    # shell('sudo mkdir /home/{}/mcc/lib'.format(usuario))
+    #
+    #
+    #
+    #
+    # escrever_arquivo_mongonproc()
+    #
+    # # # Realizar a atualização do YUM
+    # # yum update
+    # #
+    # # # Instalação do epel-release
+    # # sudo yum install epel-release
+    # #
+    # # # Instalação do pip
+    # # sudo yum install python-pip
+    # #
+    # # # Upgrade no pip
+    # # pip install --upgrade pip
+    #
+    # # Criar os diretórios mcc e mcc/lib
+    #
+    # # Necessário editar as variaveis de ambiente, podemos subir a instalação do oracle e realizas a edição da oracle home junto
+    # alocar_bashprofile()
+    #
+    #
+    # # Editar o repositório do mongo antes de realizar a instalação
+    # escrever_arquivo_mongorepo()
+    # sudo yum install mongodb-org
+    # # Editar o arquivo mongo-nproc
+    # escrever_arquivo_mongonproc()
+    # # Editar o config do linux
+    # alocar_selinux()
+    # sudo setenforce permissive
+    # # Realizar o cadastro do MongoDB, com as credenciais padrões da Prodata
+    # mongo
+    # use admin
+    # db.createUser( { user: "prodata", pwd: "Pr0d@t@", roles: [ "root" ] } )
+    # # Startar serviço do mongo
+    # sudo mongod start
+    #
+    #
+    # # Realziar a instalação das dependências do node(bzip e gcc).
+    # yum install gcc gcc-c++ bzip2
+    # sudo tar xvfz /home/{}/node-v8.11.3.tar.gz
+    # cd node-v8.11.3
+    # ./configure
+    # sudo make
+    # sudo make install
+    # # Realizar a instalação do ORACLE
+    # sudo yum install oracle-instantclient18.3-basic-18.3.0.0.0-3.x86_64.rpm
+    # cd /usr/lib/oracle/18.3/client64/lib
+    # sudo ln -s libclntsh.so.18.1 libclntsh.so
+    # # Procedimentos do NPM
+    # npm set registry http://dev01.martonis.net:11000
+    # npm login
+    # # Inserir as credenciais
+    # #     USR: martonis
+    # #     PASS: Martonis@123
+    # #     E-MAIL: teste@teste.com
+    # npm set prefix ~/mcc
+    # npm i -g mcc.startup
+    # npm i -g mcc.broker
+    # npm i -g mcc.processor
+    # npm i -g mcc.portal
+    # npm i -g msi.gama
+
