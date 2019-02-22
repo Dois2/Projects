@@ -239,7 +239,10 @@ def alocar_instaladororcl(usuario):
 def instalar_prerequisitos():
 
     # Boas vindas ao instalador
-    print('Bem vindo ao instalador do MCC.')
+    print('Bem vindo ao instalador do MCC!\n'
+          'Por favor, insira as informações corretas para que a instalação ocorra corretamente.\n'
+          '\nO manual do instalador está disponível no link: "http://jira.prodatamobility.com.br:8090/confluence/pages/viewpage.action?pageId=26149257"'
+          '\nInstalador desenvolvido por: Lucas Silveira Vieira - Testes SW.')
 
     while True:
         usuario = input('Insira o usuário SSH em que será realizado a instalação: ')
@@ -380,9 +383,16 @@ def instalar_prerequisitos():
         shell('npm login')
 
 
+        print('Iniciando a instalação do módulo STARTUP.')
         shell('npm i -g mcc.startup')
+
+        print('Iniciando a instalação do módulo BROKER.')
         shell('npm i -g mcc.broker')
+
+        print('Iniciando a instalação do módulo PORTAL.')
         shell('npm i -g mcc.portal')
+
+        print('Iniciando a instalação do módulo GAMA.')
         shell('npm i -g msi.gama')
 
 
