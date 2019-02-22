@@ -2,22 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="593a7144-76a2-47fb-8b51-474394a22bb7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Mcc_Instaler/teste.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mcc_Instaler/.bash_profile2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mcc_Instaler/config_json_check.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mcc_Instaler/gcc_versao.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mcc_Instaler/linux_firewall.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mcc_Instaler/mongo.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mcc_Instaler/mongo_conect_config.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mcc_Instaler/mongo_config.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mcc_Instaler/mongo_repositorio.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mcc_Instaler/node_versao.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mcc_Instaler/npm_version.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mcc_Instaler/oracle-instantclient18.3-basic-18.3.0.0.0-1.x86_64.rpm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mcc_Instaler/oracle_check.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mcc_Instaler/pip_version.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Mcc_Instaler/playground.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mcc_Instaler/playground.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mcc_Instaler/teste.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mcc_Instaler/teste.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -39,31 +25,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Mcc_Instaler/InstalManager.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2342">
-              <caret line="175" column="8" selection-start-line="175" selection-start-column="8" selection-end-line="175" selection-end-column="8" />
+            <state relative-caret-position="356">
+              <caret line="266" column="38" lean-forward="true" selection-start-line="266" selection-start-column="38" selection-end-line="266" selection-end-column="38" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Mcc_Instaler/playground.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="172">
-              <caret line="307" lean-forward="true" selection-start-line="307" selection-end-line="307" />
-              <folding>
-                <element signature="e#0#9#0" expanded="true" />
-                <element signature="e#107#252#0" />
-                <element signature="e#246#720#0" />
-                <element signature="e#1065#2238#0" />
-                <element signature="e#2346#3879#0" />
-                <element signature="e#4113#5276#0" />
-                <element signature="e#5305#5487#0" />
-                <element signature="e#5813#6330#0" />
-                <element signature="e#6424#6834#0" />
-                <element signature="e#7011#7748#0" />
               </folding>
             </state>
           </provider>
@@ -72,26 +37,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Mcc_Instaler/teste.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="17" selection-start-line="17" selection-end-line="17" selection-end-column="50" />
+            <state relative-caret-position="714">
+              <caret line="42" selection-start-line="42" selection-end-line="42" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Mcc_Instaler/.bash_profile">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Mcc_Instaler/playground.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="48" selection-start-line="7" selection-start-column="48" selection-end-line="7" selection-end-column="48" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/_bootlocale.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="13" selection-start-line="13" selection-end-line="13" />
+            <state relative-caret-position="1870">
+              <caret line="250" column="56" lean-forward="true" selection-start-line="250" selection-start-column="56" selection-end-line="250" selection-end-column="56" />
+              <folding>
+                <element signature="e#0#9#0" expanded="true" />
+                <element signature="e#2358#3891#0" />
+                <element signature="e#3992#5155#0" />
+                <element signature="e#5251#5686#0" />
+                <element signature="e#6422#6886#0" />
+                <element signature="e#7355#8234#0" />
+                <element signature="e#7958#8542#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -108,6 +73,8 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>InstalManager</find>
+      <find>alocar_bas</find>
+      <find>node</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -239,8 +206,30 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="teste" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Projects" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Mcc_Instaler" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Mcc_Instaler/teste.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.teste" />
         <item itemvalue="Python.codecs" />
         <item itemvalue="Python.aplication" />
       </list>
@@ -348,7 +337,14 @@
       <option name="project" value="LOCAL" />
       <updated>1550689904791</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Adicionado metodos para realoxar arquivos de configuração">
+      <created>1550779734272</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1550779734272</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TodoView">
@@ -575,34 +571,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/codecs.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5236">
-          <caret line="309" selection-start-line="309" selection-end-line="309" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Mcc_Instaler/InstalManager.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2342">
-          <caret line="175" column="8" selection-start-line="175" selection-start-column="8" selection-end-line="175" selection-end-column="8" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/_bootlocale.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="13" selection-start-line="13" selection-end-line="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Mcc_Instaler/teste.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" selection-start-line="17" selection-end-line="17" selection-end-column="50" />
         </state>
       </provider>
     </entry>
@@ -613,21 +585,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Mcc_Instaler/playground.py">
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/codecs.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="307" lean-forward="true" selection-start-line="307" selection-end-line="307" />
+        <state relative-caret-position="128">
+          <caret line="309" selection-start-line="309" selection-end-line="309" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Mcc_Instaler/teste.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="714">
+          <caret line="42" selection-start-line="42" selection-end-line="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Mcc_Instaler/InstalManager.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="356">
+          <caret line="266" column="38" lean-forward="true" selection-start-line="266" selection-start-column="38" selection-end-line="266" selection-end-column="38" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
-            <element signature="e#107#252#0" />
-            <element signature="e#246#720#0" />
-            <element signature="e#1065#2238#0" />
-            <element signature="e#2346#3879#0" />
-            <element signature="e#4113#5276#0" />
-            <element signature="e#5305#5487#0" />
-            <element signature="e#5813#6330#0" />
-            <element signature="e#6424#6834#0" />
-            <element signature="e#7011#7748#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Mcc_Instaler/playground.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1870">
+          <caret line="250" column="56" lean-forward="true" selection-start-line="250" selection-start-column="56" selection-end-line="250" selection-end-column="56" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#2358#3891#0" />
+            <element signature="e#3992#5155#0" />
+            <element signature="e#5251#5686#0" />
+            <element signature="e#6422#6886#0" />
+            <element signature="e#7355#8234#0" />
+            <element signature="e#7958#8542#0" />
           </folding>
         </state>
       </provider>
