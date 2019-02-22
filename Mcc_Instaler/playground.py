@@ -13,6 +13,18 @@ def shell(comando):
     else:
         return False
 
+def testar_node():
+    node__txt = 'node_versao.txt'
+    os.system('node --version > {}'.format(node__txt))
+    arquivo = ler_arquivo('', node__txt)
+    if arquivo.__len__() > 0:
+        versao_do_node = arquivo[0]
+        print('Node enconstra-se na versão: {}'.format(versao_do_node))
+        return True
+    else:
+        print('Node não encontrado')
+        return False
+
 # Método responsável pela leitura dos arquivos - OK
 def ler_arquivo(caminho_do_arquivo ,nome_do_arquivo):
     # Abrir o arquivo(nome_do_arquivo).
@@ -146,9 +158,9 @@ def alocar_mongod():
         print('Não foi possível mover o arquivo {} para o diretório {}'.format(nome, caminho))
 
 # Método para alocar o arquivo .bash_profile no diretório correto - VERIFICAR PARA UTILIZAR NA MAO
-def alocar_bashprofile():
+def alocar_bashprofile(usuario):
     # Definindo o caminho e o nome do arquivo
-    usuario = input('Informe o usuário para editar as variáveis de ambiente: ')
+
     caminho = '/home/{}/'.format(usuario)
     nome = '.bash_profile'
 
@@ -173,9 +185,8 @@ def alocar_selinux():
         print('Não foi possível mover o arquivo {} para o diretório {}'.format(nome, caminho))
 
 # Método para alocar o arquivo zipado do node - OK
-def alocar_instaladornode():
-    usuário = input('Informe o usuário para instalar o node: ')
-    caminho = '/home/{}/'.format(usuário)
+def alocar_instaladornode(usuario):
+    caminho = '/home/{}/'.format(usuario)
     nome_do_node = 'node-v8.15.0.tar.gz'
     if shell('cp {} {}'.format(nome_do_node, caminho+nome_do_node)):
 
@@ -183,16 +194,16 @@ def alocar_instaladornode():
 
         if shell('sudo tar xvfz {}'.format(caminho+nome_do_node)):
             print('Node descompactado com sucesso')
-            os.chdir('/home/{}/Mcc_Instaler/node-v8.15.0'.format(usuário))
+            os.chdir('/home/{}/Mcc_Instaler/node-v8.15.0'.format(usuario))
 
             shell('sudo ./configure')
-            os.chdir('/home/{}/Mcc_Instaler/node-v8.15.0'.format(usuário))
+            os.chdir('/home/{}/Mcc_Instaler/node-v8.15.0'.format(usuario))
             shell('pwd')
             shell('sudo make')
-            os.chdir('/home/{}/Mcc_Instaler/node-v8.15.0'.format(usuário))
+            os.chdir('/home/{}/Mcc_Instaler/node-v8.15.0'.format(usuario))
             shell('pwd')
             shell('sudo make install')
-            os.chdir('/home/{}/Mcc_Instaler/')
+            os.chdir('/home/{}/Mcc_Instaler/'.format(usuario))
             return True
 
     else:
@@ -230,7 +241,19 @@ def instalar_prerequisitos():
     # Boas vindas ao instalador
     print('Bem vindo ao instalador do MCC.')
 
-    usuario = input('Insira o usuário em que será realizado a instalação: ')
+    while True:
+        usuario = input('Insira o usuário SSH em que será realizado a instalação: ')
+        try:
+            os.chdir('/home/{}'.format(usuario))
+            print('Usuário válido')
+            break
+        except FileNotFoundError:
+            print('Por favor insira um usuário válido.')
+
+
+
+
+
 
     # Definição dos diretórios com base no usuário informado
     caminho_mcc = '/home/{}/mcc'.format(usuario)
@@ -265,6 +288,9 @@ def instalar_prerequisitos():
         print('Diretório {} inexistente, realizando a criação do mesmo.'.format(caminho_mcc_bin))
         shell('sudo mkdir {}'.format(caminho_mcc_bin))
 
+    # Realizar a criação do arquivo config.json
+    print('Iniciando composição e criação do arquivo de conexão ao MongoDB.')
+    escrever_arquivo_configjson(usuario)
 
     # Atualização do gerenciador de pacotes do LINUX(YUM)
     print('Iniciando atualização do YUM.')
@@ -301,8 +327,69 @@ def instalar_prerequisitos():
     # Verificar e caso seja inexistente, realizar a instalação do oracle
     if shell('cd /usr/lib/oracle/18.3'):
         print('Instalação do oracle localizada em: /usr/lib/oracle/18.3')
+        sair_reinstal = 0
+        while sair_reinstal ==0:
+            reinstalar_oracle = input('Deseja instalar novamente o Oracle?\n (1) Sim (2) Não.')
+            if reinstalar_oracle == '1' or reinstalar_oracle == '2':
+                sair_reinstal = 1
+                if reinstalar_oracle == '1':
+                    alocar_instaladororcl(usuario)
+            else:
+                print('Por favor, selecione uma opção válida...')
+
     else:
         alocar_instaladororcl(usuario)
+
+    # Verificar a instalação do node, caso inexistente instalar
+    if testar_node():
+        sair_reinstalnode = 0
+        while sair_reinstalnode ==0:
+            pergunta = input('Deseja instalar novamente o Node?\n'
+                             '(1)Sim (2)Não: ')
+            if pergunta == '1' or pergunta == '2':
+                sair_reinstalnode = 1
+                if pergunta =='1':
+                    alocar_instaladornode(usuario)
+            else:
+                print('Insira uma opção válida!')
+
+    # Alocar o arquivo de permições do Linux
+    print('Alterando as configurações de conexão do Linux...')
+    alocar_selinux()
+
+    # Realizar o comando set permissive
+    print('Liberando acesso à este servidor.')
+    if shell('sudo setenforce permissive'):
+        print('Liberação de acesso ao servidor realizado com sucesso')
+    else:
+        print('Não foi possível realizar a liberação de porta.')
+
+    # Procedimentos para finalizar instalação do ORACLE
+    os.chdir('/usr/lib/oracle/18.3/client64/lib')
+    shell('sudo ln -s libclntsh.so.18.1 libclntsh.so')
+    os.chdir('/home/{}/Mcc_Instaler'.format(usuario))
+
+
+    # Procedimentos petinentes ao NPM e instalação dos módulos em node
+    print('Iniciando a configuração do Node Package Manager(NPM)')
+    caminho = '/home/{}/mcc'.format(usuario)
+    if shell('npm set prefix {}'.format(caminho)):
+        print('Prefixo do NPM direcionado para {}'.format(caminho))
+        verdaccio = input('Insira o acesso ao verdaccio da Martonis:\n')
+        shell('npm set registry {}'.format(verdaccio))
+        shell('npm login')
+
+
+        shell('npm i -g mcc.startup')
+        shell('npm i -g mcc.broker')
+        shell('npm i -g mcc.portal')
+        shell('npm i -g msi.gama')
+
+
+
+
+
+
 
 
 
