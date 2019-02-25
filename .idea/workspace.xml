@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="593a7144-76a2-47fb-8b51-474394a22bb7" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Mcc_Instaler/playground.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mcc_Instaler/playground.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mcc_Instaler/teste.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mcc_Instaler/teste.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -46,8 +46,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Mcc_Instaler/playground.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1870">
-              <caret line="250" column="56" lean-forward="true" selection-start-line="250" selection-start-column="56" selection-end-line="250" selection-end-column="56" />
+            <state relative-caret-position="1157">
+              <caret line="308" column="41" lean-forward="true" selection-start-line="308" selection-start-column="41" selection-end-line="308" selection-end-column="41" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
                 <element signature="e#2358#3891#0" />
@@ -344,7 +344,28 @@
       <option name="project" value="LOCAL" />
       <updated>1550779734272</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Instalador pronto v 19.001">
+      <created>1550861190960</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1550861190960</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Instalador pronto v 19.001">
+      <created>1550861263811</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1550861263811</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Instalador pronto v 19.001">
+      <created>1550865588541</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1550865588541</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TodoView">
@@ -360,17 +381,17 @@
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.63279444" visible="true" weight="0.25" />
-      <window_info id="Structure" order="1" sideWeight="0.36720553" side_tool="true" visible="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.63309354" visible="true" weight="0.25" />
+      <window_info id="Structure" order="1" sideWeight="0.36690646" side_tool="true" visible="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32850242" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.30273753" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.30273753" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.34138486" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32850242" />
-      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49925596" weight="0.32850242" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="7" sideWeight="0.49925596" visible="true" weight="0.32850242" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50074404" side_tool="true" weight="0.32850242" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.32850242" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32850242" />
@@ -445,7 +466,8 @@
     <MESSAGE value="Alterações classe teste" />
     <MESSAGE value="Manipulação dos arquivos:&#10;repositorio mongo&#10;config.json&#10;mongo-nproc" />
     <MESSAGE value="Adicionado metodos para realoxar arquivos de configuração" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adicionado metodos para realoxar arquivos de configuração" />
+    <MESSAGE value="Instalador pronto v 19.001" />
+    <option name="LAST_COMMIT_MESSAGE" value="Instalador pronto v 19.001" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -611,8 +633,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Mcc_Instaler/playground.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1870">
-          <caret line="250" column="56" lean-forward="true" selection-start-line="250" selection-start-column="56" selection-end-line="250" selection-end-column="56" />
+        <state relative-caret-position="1157">
+          <caret line="308" column="41" lean-forward="true" selection-start-line="308" selection-start-column="41" selection-end-line="308" selection-end-column="41" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
             <element signature="e#2358#3891#0" />

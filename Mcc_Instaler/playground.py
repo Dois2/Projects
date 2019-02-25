@@ -304,6 +304,10 @@ def instalar_prerequisitos():
     else:
         print('Erro ao atualizar o gerenciador YUM.')
 
+    # Realziar a instalação do editor de textos nano
+    print('Iniciando a instalação do editor NANO.')
+    shell('sudo yum install nano.x86_64')
+
     # Realizar a instalação do Epel-release
     print('Iniciando a instalação do EPEL-RELEASE.')
     shell('sudo yum install epel-release.noarch')
