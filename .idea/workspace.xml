@@ -2,8 +2,52 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="593a7144-76a2-47fb-8b51-474394a22bb7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Mcc_Instaler/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Mcc_Instaler/colorama/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Mcc_Instaler/colorama/ansi.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Mcc_Instaler/colorama/ansitowin32.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Mcc_Instaler/colorama/initialise.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Mcc_Instaler/colorama/win32.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Mcc_Instaler/colorama/winterm.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Mcc_Instaler/py2exe/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Mcc_Instaler/py2exe/__main__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Mcc_Instaler/py2exe/_wapi.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Mcc_Instaler/py2exe/boot_common.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Mcc_Instaler/py2exe/boot_ctypes_com_server.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Mcc_Instaler/py2exe/boot_service.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Mcc_Instaler/py2exe/build_exe.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Mcc_Instaler/py2exe/distutils_buildexe.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Mcc_Instaler/py2exe/dllfinder.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Mcc_Instaler/py2exe/hooks.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Mcc_Instaler/py2exe/icons.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Mcc_Instaler/py2exe/mf3.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Mcc_Instaler/py2exe/mf34-namespace.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Mcc_Instaler/py2exe/mf34.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Mcc_Instaler/py2exe/patch_distutils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Mcc_Instaler/py2exe/py2exe_distutils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Mcc_Instaler/py2exe/resources.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Mcc_Instaler/py2exe/resources.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Mcc_Instaler/py2exe/run-py3.3-win-amd64.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Mcc_Instaler/py2exe/run-py3.3-win32.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Mcc_Instaler/py2exe/run-py3.4-win-amd64.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Mcc_Instaler/py2exe/run-py3.4-win32.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Mcc_Instaler/py2exe/run_ctypes_dll-py3.3-win-amd64.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Mcc_Instaler/py2exe/run_ctypes_dll-py3.3-win32.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Mcc_Instaler/py2exe/run_ctypes_dll-py3.4-win-amd64.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Mcc_Instaler/py2exe/run_ctypes_dll-py3.4-win32.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Mcc_Instaler/py2exe/run_w-py3.3-win-amd64.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Mcc_Instaler/py2exe/run_w-py3.3-win32.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Mcc_Instaler/py2exe/run_w-py3.4-win-amd64.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Mcc_Instaler/py2exe/run_w-py3.4-win32.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Mcc_Instaler/py2exe/runtime.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Mcc_Instaler/py2exe/setup_template.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Mcc_Instaler/py2exe/versioninfo.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Mcc_Instaler/teste.pyw" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Mcc_Instaler/playground.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mcc_Instaler/playground.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mcc_Instaler/teste.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/easy-install.pth" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/easy-install.pth" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/pip-selfcheck.json" beforeDir="false" afterPath="$PROJECT_DIR$/venv/pip-selfcheck.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,37 +70,19 @@
         <entry file="file://$PROJECT_DIR$/Mcc_Instaler/InstalManager.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="356">
-              <caret line="266" column="38" lean-forward="true" selection-start-line="266" selection-start-column="38" selection-end-line="266" selection-end-column="38" />
+              <caret line="266" column="38" selection-start-line="266" selection-start-column="38" selection-end-line="266" selection-end-column="38" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Mcc_Instaler/teste.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="714">
-              <caret line="42" selection-start-line="42" selection-end-line="42" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Mcc_Instaler/playground.py">
+        <entry file="file://$PROJECT_DIR$/Mcc_Instaler/teste.pyw">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1157">
-              <caret line="308" column="41" lean-forward="true" selection-start-line="308" selection-start-column="41" selection-end-line="308" selection-end-column="41" />
-              <folding>
-                <element signature="e#0#9#0" expanded="true" />
-                <element signature="e#2358#3891#0" />
-                <element signature="e#3992#5155#0" />
-                <element signature="e#5251#5686#0" />
-                <element signature="e#6422#6886#0" />
-                <element signature="e#7355#8234#0" />
-                <element signature="e#7958#8542#0" />
-              </folding>
+            <state relative-caret-position="199">
+              <caret line="13" column="9" selection-start-line="13" selection-start-column="9" selection-end-line="13" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -75,6 +101,7 @@
       <find>InstalManager</find>
       <find>alocar_bas</find>
       <find>node</find>
+      <find>input</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -91,16 +118,20 @@
         <option value="$PROJECT_DIR$/Mcc_Instaler/aplication.py" />
         <option value="$PROJECT_DIR$/Mcc_Instaler/mongodb-org.repo" />
         <option value="$PROJECT_DIR$/Mcc_Instaler/InstalManager.py" />
-        <option value="$PROJECT_DIR$/Mcc_Instaler/teste.py" />
         <option value="$PROJECT_DIR$/Mcc_Instaler/playground.py" />
+        <option value="$PROJECT_DIR$/Mcc_Instaler/teste.py" />
+        <option value="$PROJECT_DIR$/Mcc_Instaler/teste.pyw" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-336" />
-    <option name="y" value="-17" />
+    <option name="x" value="-1344" />
+    <option name="y" value="-18" />
     <option name="width" value="1382" />
     <option name="height" value="754" />
+  </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -120,6 +151,24 @@
               <item name="Projects" type="462c0819:PsiDirectoryNode" />
               <item name="Mcc_Instaler" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Projects" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Projects" type="462c0819:PsiDirectoryNode" />
+              <item name="venv" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Projects" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Projects" type="462c0819:PsiDirectoryNode" />
+              <item name="venv" type="462c0819:PsiDirectoryNode" />
+              <item name="Lib" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Projects" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Projects" type="462c0819:PsiDirectoryNode" />
+              <item name="venv" type="462c0819:PsiDirectoryNode" />
+              <item name="Lib" type="462c0819:PsiDirectoryNode" />
+              <item name="site-packages" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -129,6 +178,15 @@
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\lucas.vieira\PycharmProjects\Projects\Mcc_Instaler\" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\lucas.vieira\PycharmProjects\Projects\Mcc_Instaler" />
+      <recent name="C:\Users\lucas.vieira\PycharmProjects\Projects\Mcc_Instaler\venv" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -142,7 +200,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.playground">
+  <component name="RunManager" selected="Python.teste.pyw">
     <configuration name="aplication" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Projects" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -218,7 +276,28 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Mcc_Instaler/teste.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\lucas.vieira\PycharmProjects\Projects\Mcc_Instaler\teste.pyw" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="teste.pyw" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Projects" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Mcc_Instaler" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Mcc_Instaler/teste.pyw" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -229,6 +308,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.teste.pyw" />
         <item itemvalue="Python.teste" />
         <item itemvalue="Python.codecs" />
         <item itemvalue="Python.aplication" />
@@ -365,7 +445,14 @@
       <option name="project" value="LOCAL" />
       <updated>1550865588541</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Instalador pronto v 19.001">
+      <created>1551096878510</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1551096878510</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TodoView">
@@ -378,11 +465,11 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
+    <frame x="-1374" y="-11" width="1382" height="754" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.63309354" visible="true" weight="0.25" />
-      <window_info id="Structure" order="1" sideWeight="0.36690646" side_tool="true" visible="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.63069546" visible="true" weight="0.25" />
+      <window_info id="Structure" order="1" sideWeight="0.36930457" side_tool="true" visible="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32850242" />
@@ -391,9 +478,9 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32850242" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="7" sideWeight="0.49925596" visible="true" weight="0.32850242" />
+      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49925596" weight="0.32850242" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50074404" side_tool="true" weight="0.32850242" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32850242" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.32850242" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32850242" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -586,13 +673,6 @@
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/os.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Mcc_Instaler/aplication.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="11" selection-start-column="11" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/_bootlocale.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -614,36 +694,78 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Mcc_Instaler/teste.py">
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/colored/colored.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Mcc_Instaler/colorama/ansi.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Mcc_Instaler/py2exe/mf3.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Mcc_Instaler/aplication.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="42" selection-start-line="42" selection-end-line="42" />
+        <state>
+          <caret column="11" selection-start-column="11" selection-end-column="11" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Mcc_Instaler/InstalManager.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="356">
-          <caret line="266" column="38" lean-forward="true" selection-start-line="266" selection-start-column="38" selection-end-line="266" selection-end-column="38" />
+          <caret line="266" column="38" selection-start-line="266" selection-start-column="38" selection-end-line="266" selection-end-column="38" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/cx_Oracle-7.1.1.dist-info/INSTALLER">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/cx_Oracle.cp37-win32.pyd">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/cx_Oracle-7.1.1.dist-info/cx_Oracle.cp37-win32.pyd">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/cx_Oracle-7.1.1.dist-info/top_level.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/cx_Oracle-7.1.1.dist-info/WHEEL">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/Mcc_Instaler/playground.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1157">
-          <caret line="308" column="41" lean-forward="true" selection-start-line="308" selection-start-column="41" selection-end-line="308" selection-end-column="41" />
+        <state relative-caret-position="255">
+          <caret line="15" column="20" lean-forward="true" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#366#713#0" />
+            <element signature="e#449#971#0" />
+            <element signature="e#1077#2250#0" />
             <element signature="e#2358#3891#0" />
             <element signature="e#3992#5155#0" />
             <element signature="e#5251#5686#0" />
+            <element signature="e#5817#6330#0" />
             <element signature="e#6422#6886#0" />
             <element signature="e#7355#8234#0" />
             <element signature="e#7958#8542#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/cx_Oracle-doc/README.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" selection-start-line="3" selection-end-line="3" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Mcc_Instaler/teste.pyw">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="13" column="9" selection-start-line="13" selection-start-column="9" selection-end-line="13" selection-end-column="9" />
         </state>
       </provider>
     </entry>

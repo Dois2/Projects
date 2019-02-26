@@ -1,5 +1,7 @@
 import os
 import time
+from colorama import Fore, Back
+
 
 # Método utilizado para verificar a execução dos comandos no shell - OK
 def shell(comando):
@@ -13,6 +15,7 @@ def shell(comando):
     else:
         return False
 
+# Método responsável por verificar a instalação do node
 def testar_node():
     node__txt = 'node_versao.txt'
     os.system('node --version > {}'.format(node__txt))
@@ -92,7 +95,7 @@ def escrever_arquivo_configjson(usuario):
 
 
         # Definindo o: Usuário, senha, ip, porta e nome do banco
-        user= input('Insira um usuário válido para o banco MongoDB: ')
+        user= input(Fore.WHITE + Back.BLUE +'Insira um usuário válido para o banco MongoDB: ')
         senha = input('Insira uma senha válida para o banco MongoDB: ')
         ip = input('Insira um ip válido para o banco MongoDB: ')
         porta = input('Insira uma porta válida para o banco MongoDB: ')
@@ -109,7 +112,7 @@ def escrever_arquivo_configjson(usuario):
 
         # Fechar o arquivo aberto e informar que foi possivel escrever no diretorio especificado
         file.close()
-        print('Arquivo "{}" criado com sucesso!'.format(arquivo_caminho))
+        print(Fore.WHITE + Back.BLACK +'Arquivo "{}" criado com sucesso!'.format(arquivo_caminho))
     else:
         # Caso caminho seja inválido, exibimos a mensagem que não foi possivel escrever
         print('Caminho "{}" inexistente'.format(caminho))
@@ -210,6 +213,7 @@ def alocar_instaladornode(usuario):
         print('não foi possível alocar o node, no caminho "{}"'.format(caminho))
         return False
 
+# Método responsável por realizar a instalação do ORACLE
 def alocar_instaladororcl(usuario):
 
     caminho = '/home/{}/'.format(usuario)
@@ -239,16 +243,16 @@ def alocar_instaladororcl(usuario):
 def instalar_prerequisitos():
 
     # Boas vindas ao instalador
-    print('Bem vindo ao instalador do MCC!\n'
+    print(Fore.RESET + Back.RESET +'Bem vindo ao instalador do MCC!\n'
           'Por favor, insira as informações corretas para que a instalação ocorra corretamente.\n'
-          '\nO manual do instalador está disponível no link: "http://jira.prodatamobility.com.br:8090/confluence/pages/viewpage.action?pageId=26149257"'
-          '\nInstalador desenvolvido por: Lucas Silveira Vieira - Testes SW.')
+          '\nO manual do instalador está disponível no link: '+ Back.LIGHTWHITE_EX + Fore.MAGENTA+'"http://jira.prodatamobility.com.br:8090/confluence/pages/viewpage.action?pageId=26149257"' + Fore.RESET + Back.RESET+
+          '\nInstalador desenvolvido por: Lucas Silveira Vieira - PRODATA Mobility Brasil.')
 
     while True:
-        usuario = input('Insira o usuário SSH em que será realizado a instalação: ')
+        usuario = input(Fore.WHITE + Back.BLUE +'Insira o usuário SSH em que será realizado a instalação: ')
         try:
             os.chdir('/home/{}'.format(usuario))
-            print('Usuário válido')
+            print(Fore.WHITE + Back.BLACK +'Usuário válido')
             break
         except FileNotFoundError:
             print('Por favor insira um usuário válido.')
@@ -336,13 +340,13 @@ def instalar_prerequisitos():
         print('Instalação do oracle localizada em: /usr/lib/oracle/18.3')
         sair_reinstal = 0
         while sair_reinstal ==0:
-            reinstalar_oracle = input('Deseja instalar novamente o Oracle?\n (1) Sim (2) Não.')
+            reinstalar_oracle = input(Fore.WHITE + Back.BLUE +'Deseja instalar novamente o Oracle?\n (1) Sim (2) Não.')
             if reinstalar_oracle == '1' or reinstalar_oracle == '2':
                 sair_reinstal = 1
                 if reinstalar_oracle == '1':
                     alocar_instaladororcl(usuario)
             else:
-                print('Por favor, selecione uma opção válida...')
+                print(Fore.WHITE + Back.BLACK +'Por favor, selecione uma opção válida...')
 
     else:
         alocar_instaladororcl(usuario)
@@ -351,17 +355,17 @@ def instalar_prerequisitos():
     if testar_node():
         sair_reinstalnode = 0
         while sair_reinstalnode ==0:
-            pergunta = input('Deseja instalar novamente o Node?\n'
+            pergunta = input(Fore.WHITE + Back.BLUE +'Deseja instalar novamente o Node?\n'
                              '(1)Sim (2)Não: ')
             if pergunta == '1' or pergunta == '2':
                 sair_reinstalnode = 1
                 if pergunta =='1':
                     alocar_instaladornode(usuario)
             else:
-                print('Insira uma opção válida!')
+                print(Fore.WHITE + Back.BLACK +'Insira uma opção válida!')
 
     # Alocar o arquivo de permições do Linux
-    print('Alterando as configurações de conexão do Linux...')
+    print(Fore.WHITE + Back.BLACK +'Alterando as configurações de conexão do Linux...')
     alocar_selinux()
 
     # Realizar o comando set permissive
@@ -378,16 +382,16 @@ def instalar_prerequisitos():
 
 
     # Procedimentos petinentes ao NPM e instalação dos módulos em node
-    print('Iniciando a configuração do Node Package Manager(NPM)')
+    print(Fore.WHITE + Back.BLACK +'Iniciando a configuração do Node Package Manager(NPM)')
     caminho = '/home/{}/mcc'.format(usuario)
     if shell('npm set prefix {}'.format(caminho)):
-        print('Prefixo do NPM direcionado para {}'.format(caminho))
-        verdaccio = input('Insira o acesso ao verdaccio da Martonis:\n')
+        print(Fore.WHITE + Back.BLACK +'Prefixo do NPM direcionado para {}'.format(caminho))
+        verdaccio = input(Fore.WHITE + Back.BLUE +'Insira o acesso ao verdaccio da Martonis:\n')
         shell('npm set registry {}'.format(verdaccio))
         shell('npm login')
 
 
-        print('Iniciando a instalação do módulo STARTUP.')
+        print(Fore.WHITE + Back.BLACK +'Iniciando a instalação do módulo STARTUP.')
         shell('npm i -g mcc.startup')
 
         print('Iniciando a instalação do módulo BROKER.')
