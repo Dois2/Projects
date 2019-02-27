@@ -121,20 +121,18 @@ else:
 
 print('\n\nVerificação da SYSTEMPARAMETERS:\n')
 if par2 == 1:
-    print('--------->Campo MCCURL configurado corretamente!')
+    print('---------> Campo MCCURL configurado corretamente!')
 if integmcc == 1 :
-    print('--------->Campo CRT_ENABLEINTEGMCC configurado corretamente!')
+    print('---------> Campo CRT_ENABLEINTEGMCC configurado corretamente!')
 if integapps == 1:
-    print('--------->Campo CRT_MCCINTEGAPPS configurado corretamente!')
+    print('---------> Campo CRT_MCCINTEGAPPS configurado corretamente!')
 
 print('\n\nGeração do PAR2:\n')
 if eod_filesmt ==1 :
-    print('--------->Geração do PAR2 ativada na tabela EOD_FILESMT!')
+    print('---------> Geração do PAR2 ativada na tabela EOD_FILESMT!')
 if eod_filesdt ==1:
-    print('--------->Geração do PAR2 ativada na tabela EOD_FILESDT!')
+    print('---------> Geração do PAR2 ativada na tabela EOD_FILESDT!')
 if bathexec ==1:
-    print('--------->Geração do PAR2 ativada na tabela EOD_PACKAGESBATCHEXEC!')
+    print('---------> Geração do PAR2 ativada na tabela EOD_PACKAGESBATCHEXEC!')
 if packagexfiles ==1:
-    print('--------->Existe a ligação entre o EOD_PACKAGES e o FILESMT!')
-
-
+    print('---------> Existe a ligação entre o EOD_PACKAGES e o FILESMT!')

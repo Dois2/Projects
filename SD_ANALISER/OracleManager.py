@@ -66,27 +66,5 @@ class OracleManager:
         except cx_Oracle.DatabaseError:
             print('Não foi possível se conectar no banco com as credenciais informadas.')
 
-# TESTES PESSOAIS
-# usuario = 'GUAIUBA'
-# password = usuario
-# ip = '172.17.10.18'
-# porta = 'URANOBD'
-#
-# iss_id = int(input('Insira o Issuer: '))
-# cd_id = int(input('Insira o Card Design: '))
-# cd_snr = int(input('Insira o Senial Nº: '))
-#
-# comando = 'SELECT CB_PURSEAVALUE,' \
-#           '	      CB_PURSEBVALUE' \
-#           '  FROM CARDBALANCE' \
-#           ' WHERE ISS_ID = {}' \
-#           '   AND CD_ID = {}' \
-#           '   AND CRD_SNR = {}'.format(iss_id, cd_id, cd_snr)
-#
-#
-# print(comando)
-#
-# orcl = OracleManager()
-#
-# orcl.select(usuario, password, ip, porta, comando)
+
 

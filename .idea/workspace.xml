@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="593a7144-76a2-47fb-8b51-474394a22bb7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/SD_ANALISER/OracleTest.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SD_ANALISER/playground.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SD_ANALISER/cx_Oracle.cp37-win_amd64.pyd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mcc_Instaler/InstalManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mcc_Instaler/InstalManager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mcc_Instaler/Instalar.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mcc_Instaler/Instalar.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SD_ANALISER/OracleManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/SD_ANALISER/OracleManager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SD_ANALISER/OracleTest.py" beforeDir="false" afterPath="$PROJECT_DIR$/SD_ANALISER/OracleTest.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,15 +14,15 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="DockManager">
-    <window id="1">
+    <window id="2">
       <content type="file-editors">
         <state>
           <leaf>
             <file pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/SD_ANALISER/OracleManager.py">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="239">
-                    <caret line="28" selection-start-line="28" selection-end-line="28" />
+                  <state relative-caret-position="578">
+                    <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
                     <folding>
                       <element signature="e#0#9#0" expanded="true" />
                     </folding>
@@ -63,8 +61,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/SD_ANALISER/OracleTest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="87" column="16" lean-forward="true" selection-start-line="87" selection-start-column="16" selection-end-line="87" selection-end-column="16" />
+            <state relative-caret-position="238">
+              <caret line="137" column="34" selection-start-line="137" selection-start-column="34" selection-end-line="137" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -137,10 +135,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-1344" />
-    <option name="y" value="-18" />
+    <option name="x" value="-1448" />
+    <option name="y" value="-25" />
     <option name="width" value="1382" />
-    <option name="height" value="754" />
+    <option name="height" value="753" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -162,6 +160,39 @@
               <item name="Projects" type="462c0819:PsiDirectoryNode" />
               <item name="SD_ANALISER" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Projects" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Projects" type="462c0819:PsiDirectoryNode" />
+              <item name="venv" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Projects" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Projects" type="462c0819:PsiDirectoryNode" />
+              <item name="venv" type="462c0819:PsiDirectoryNode" />
+              <item name="Lib" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Projects" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Projects" type="462c0819:PsiDirectoryNode" />
+              <item name="venv" type="462c0819:PsiDirectoryNode" />
+              <item name="Lib" type="462c0819:PsiDirectoryNode" />
+              <item name="site-packages" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Projects" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
+            <path>
+              <item name="Projects" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; Python 3.7 &gt;" type="70bed36:NamedLibraryElementNode" />
+            </path>
+            <path>
+              <item name="Projects" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; Python 3.7 &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="site-packages" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -175,6 +206,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\lucas.vieira\PycharmProjects\Projects\SD_ANALISER" />
       <recent name="C:\Users\lucas.vieira\PycharmProjects\Projects\Mcc_Instaler" />
       <recent name="C:\Users\lucas.vieira\PycharmProjects\Projects\Mcc_Instaler\venv" />
     </key>
@@ -497,7 +529,21 @@
       <option name="project" value="LOCAL" />
       <updated>1551206149931</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Termino da verificação oracle">
+      <created>1551278425448</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1551278425449</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Termino da verificação oracle">
+      <created>1551291044531</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1551291044531</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TodoView">
@@ -600,7 +646,8 @@
     <MESSAGE value="Adicionado metodos para realoxar arquivos de configuração" />
     <MESSAGE value="Instalador pronto v 19.001" />
     <MESSAGE value="Inicio das resoluções de chamado AI" />
-    <option name="LAST_COMMIT_MESSAGE" value="Inicio das resoluções de chamado AI" />
+    <MESSAGE value="Termino da verificação oracle" />
+    <option name="LAST_COMMIT_MESSAGE" value="Termino da verificação oracle" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -799,10 +846,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/SD_ANALISER/cx_Oracle.cp37-win_amd64.pyd">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/SD_ANALISER/OracleManager.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="28" selection-start-line="28" selection-end-line="28" />
+        <state relative-caret-position="578">
+          <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
@@ -811,8 +861,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/SD_ANALISER/OracleTest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="87" column="16" lean-forward="true" selection-start-line="87" selection-start-column="16" selection-end-line="87" selection-end-column="16" />
+        <state relative-caret-position="238">
+          <caret line="137" column="34" selection-start-line="137" selection-start-column="34" selection-end-line="137" selection-end-column="34" />
         </state>
       </provider>
     </entry>
