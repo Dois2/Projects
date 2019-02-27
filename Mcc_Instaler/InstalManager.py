@@ -57,7 +57,7 @@ class InstalManager:
         #Escrever os valores de mongo_repo, no arquivo especificado
         InstalManager.escrever('mongodb-org.repo', mongo_repo)
 
-        #Se teste == 0, significa que o comando abaixo funcionou corretamente(conseguiu realocar os valores no diretório
+        #Se orcl == 0, significa que o comando abaixo funcionou corretamente(conseguiu realocar os valores no diretório
         # especificado)
         teste_if = os.system('sudo mv mongodb-org.repo /etc/yum.repos.d/mongodb-org.repo')
         if teste_if != 1:

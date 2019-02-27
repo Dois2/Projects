@@ -481,7 +481,7 @@ instalar_prerequisitos()
     # # Inserir as credenciais
     # #     USR: martonis
     # #     PASS: Martonis@123
-    # #     E-MAIL: teste@teste.com
+    # #     E-MAIL: orcl@orcl.com
     # npm set prefix ~/mcc
     # npm i -g mcc.startup
     # npm i -g mcc.broker
