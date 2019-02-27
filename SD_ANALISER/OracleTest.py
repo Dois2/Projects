@@ -18,7 +18,7 @@ orcl = OracleManager.OracleManager()
 usuario = input('Insira o usuário para conectar ao banco: ')
 password =input('Insira a senha do usuário acima: ')
 ip = input('Insira o ip do banco: ')
-porta =input('Insira a porta do banco: ')
+porta =input('Insira o SSID do banco: ')
 
 
 
@@ -80,7 +80,7 @@ filtro = input('Informe a aplicação para verificar se está habilitada: ')
 if orcl.select_verificar(usuario, password, ip, porta, verificar_integapps, filtro):
     integapps = 1
 else:
-    print('\n\nAplicação "{}" não encontrada.\n'
+    print('\n\nAplicação "{}" não encontrada no SP_CODE CRT_MCCINTEGAPPS, tabela SYSTEMPARAMETERS.\n'
           'Necessário realizar a configuração do valor de SP_CODE = CRT_MCCINTEGAPPS, na tabela SYSTEMPARAMETERS.'.format(filtro))
 
 # If para verificar se o integmcc esta habilitado.
@@ -119,19 +119,22 @@ if orcl.select_verificar(usuario, password, ip, porta, verificar_bathexec, 'A'):
 else:
     print('Necessário realizar as configurações necessárias na tabela EOD_PACKAGESBATCHEXEC')
 
-
-if integmcc ==1 :
-    print('\n\nCampo CRT_ENABLEINTEGMCC configurado corretamente!')
-if integapps ==1:
-    print('Campo CRT_MCCINTEGAPPS configurado corretamente!')
+print('\n\nVerificação da SYSTEMPARAMETERS:\n')
 if par2 == 1:
-    print('Campo MCCURL configurado corretamente!')
+    print('--------->Campo MCCURL configurado corretamente!')
+if integmcc == 1 :
+    print('--------->Campo CRT_ENABLEINTEGMCC configurado corretamente!')
+if integapps == 1:
+    print('--------->Campo CRT_MCCINTEGAPPS configurado corretamente!')
+
+print('\n\nGeração do PAR2:\n')
 if eod_filesmt ==1 :
-    print('Geração do PAR2 ativada na tabela EOD_FILESMT')
+    print('--------->Geração do PAR2 ativada na tabela EOD_FILESMT!')
 if eod_filesdt ==1:
-    print('Geração do PAR2 ativada na tabela EOD_FILESDT')
-if packagexfiles ==1:
-    print('Existe a ligação entre o EOD_PACKAGES e o FILESMT')
+    print('--------->Geração do PAR2 ativada na tabela EOD_FILESDT!')
 if bathexec ==1:
-    print('Geração do PAR2 ativada na tabela EOD_PACKAGESBATCHEXEC')
+    print('--------->Geração do PAR2 ativada na tabela EOD_PACKAGESBATCHEXEC!')
+if packagexfiles ==1:
+    print('--------->Existe a ligação entre o EOD_PACKAGES e o FILESMT!')
+
 
