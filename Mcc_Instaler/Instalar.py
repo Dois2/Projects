@@ -16,10 +16,12 @@ def shell(comando):
         return False
 
 # Método responsável por verificar a instalação do node
-def testar_node():
+def testar_node(usuario):
+
+    caminho_intalador = '/home/{}/Mcc_Instaler/'.format(usuario)
     node__txt = 'node_versao.txt'
-    os.system('node --version > {}'.format(node__txt))
-    arquivo = ler_arquivo('', node__txt)
+    os.system('node --version > {}'.format(caminho_intalador+node__txt))
+    arquivo = ler_arquivo('', caminho_intalador+node__txt)
     if arquivo.__len__() > 0:
         versao_do_node = arquivo[0]
         print('Node enconstra-se na versão: {}'.format(versao_do_node))
@@ -175,14 +177,15 @@ def alocar_bashprofile(usuario):
         print('Não foi possível mover o arquivo {} para o diretório {}'.format(nome, caminho))
 
 # Método para alocar o arquivo config no diretório correto - OK
-def alocar_selinux():
+def alocar_selinux(usuario):
     # Definindo o caminho e o nome do arquivo
     caminho = '/etc/selinux/'
+    caminho_instalador = '/home/{}/Mcc_Instaler/'.format(usuario)
     nome = 'config'
     print(caminho+nome)
 
     # Verificação, onde caso consigamos copiar o arquivo recebemos um retorno informando sobre isto.
-    if shell('sudo cp {} {}'.format(nome, caminho + nome)):
+    if shell('sudo cp {} {}'.format(caminho_instalador+nome, caminho + nome)):
         print('Arquivo "{}" movido para "{}" com sucesso!'.format(nome, caminho))
     else:
         print('Não foi possível mover o arquivo {} para o diretório {}'.format(nome, caminho))
@@ -191,19 +194,23 @@ def alocar_selinux():
 def alocar_instaladornode(usuario):
     caminho = '/home/{}/'.format(usuario)
     nome_do_node = 'node-v8.15.0.tar.gz'
-    if shell('cp {} {}'.format(nome_do_node, caminho+nome_do_node)):
+    node_descom = 'node-v8.15.0'
+    caminho_intalador = '/home/{}/Mcc_Instaler/'.format(usuario)
+    if shell('cp {} {}'.format(caminho_intalador+nome_do_node, caminho+nome_do_node)):
 
         print("Node alocado com sucesso!")
+        print(caminho+nome_do_node)
+        os.chdir(caminho)
 
-        if shell('sudo tar xvfz {}'.format(caminho+nome_do_node)):
+        if shell('sudo tar -xvf {}'.format(caminho+nome_do_node)):
             print('Node descompactado com sucesso')
-            os.chdir('/home/{}/Mcc_Instaler/node-v8.15.0'.format(usuario))
+            os.chdir('/home/{}/node-v8.15.0'.format(usuario))
 
             shell('sudo ./configure')
-            os.chdir('/home/{}/Mcc_Instaler/node-v8.15.0'.format(usuario))
+            os.chdir('/home/{}/node-v8.15.0'.format(usuario))
             shell('pwd')
             shell('sudo make')
-            os.chdir('/home/{}/Mcc_Instaler/node-v8.15.0'.format(usuario))
+            os.chdir('/home/{}/node-v8.15.0'.format(usuario))
             shell('pwd')
             shell('sudo make install')
             os.chdir('/home/{}/Mcc_Instaler/'.format(usuario))
@@ -217,11 +224,14 @@ def alocar_instaladornode(usuario):
 def alocar_instaladororcl(usuario):
 
     caminho = '/home/{}/'.format(usuario)
+    caminho_instalador = caminho + 'Mcc_Instaler/'
+    print('Caminho do home: {}'.format(caminho))
+    print('Caminho do instalador: {}'.format(caminho_instalador))
     nome_do_oracle = 'oracle-instantclient18.3-basic-18.3.0.0.0-3.x86_64.rpm'
-    if shell('cp {} {}'.format(nome_do_oracle, caminho + nome_do_oracle)):
+    if shell('sudo cp {} {}'.format(caminho_instalador+nome_do_oracle, caminho + nome_do_oracle)):
         print('Oracle alocado em "{}" com sucesso!\n'.format(caminho+nome_do_oracle))
         print('Iniciando procedimento de instalação...')
-        if shell('sudo yum install {}'.format(nome_do_oracle)):
+        if shell('sudo yum install {}'.format(caminho+nome_do_oracle)):
             print('Oracle instalado com sucesso!')
             return True
     else:
@@ -268,32 +278,38 @@ def instalar_prerequisitos():
     caminho_mcc_bin = '/home/{}/mcc/bin'.format(usuario)
 
 
-    print('Iniciando procedimento de criação das pastas do MCC...')
+    print('Iniciando procedimento de criação das pastas do MCC...\n\n\n')
     time.sleep(3)
-    # Verificação e criação do caminho mcc
-    if shell('cd {}'.format(caminho_mcc)):
+# Verificação e criação do caminho mcc
+    try:
+        os.chdir(caminho_mcc)
         print('Diretório {} existente.'.format(caminho_mcc))
-    else:
-        print('Diretório {} inexistente, realizando a criação do mesmo.'.format(caminho_mcc))
-        shell('sudo mkdir {}'.format(caminho_mcc))
+    except FileNotFoundError:
+        print('Não foi localizado o caminho ~/mcc.\nRealizando a criação do mesmo.')
+        shell('mkdir {}'.format(caminho_mcc))
+
 
     time.sleep(1)
 
-    # Verificação e criação do caminho mcc/lib
-    if shell('cd {}'.format(caminho_mcc_lib)):
+# Verificação e criação do diretório mcc/lib
+    try:
+        os.chdir(caminho_mcc_lib)
         print('Diretório {} existente'.format(caminho_mcc_lib))
-    else:
-        print('Diretório {} inexistente, realizando a criação do mesmo.'.format(caminho_mcc_lib))
-        shell('sudo mkdir {}'.format(caminho_mcc_lib))
+    except FileNotFoundError:
+        print('Não foi localizado o diretório {}.\nRealizando a criação do mesmo.'.format(caminho_mcc_lib))
+        shell('mkdir {}'.format(caminho_mcc_lib))
 
     time.sleep(1)
 
-    # Verificação e criação do caminho mcc/bin
-    if shell('cd {}'.format(caminho_mcc_bin)):
+
+# Verificação e criação do diretório mcc/bin
+    try:
+        os.chdir(caminho_mcc_bin)
         print('Diretório {} existente'.format(caminho_mcc_bin))
-    else:
-        print('Diretório {} inexistente, realizando a criação do mesmo.'.format(caminho_mcc_bin))
-        shell('sudo mkdir {}'.format(caminho_mcc_bin))
+    except FileNotFoundError:
+        print('Não foi localizado o diretório {}.\nRealizando a criação do mesmo.'.format(caminho_mcc_bin))
+        shell('mkdir {}'.format(caminho_mcc_bin))
+
 
     # Realizar a criação do arquivo config.json
     print('Iniciando composição e criação do arquivo de conexão ao MongoDB.')
@@ -336,9 +352,10 @@ def instalar_prerequisitos():
     shell('sudo yum install gcc gcc-c++ bzip2')
 
     # Verificar e caso seja inexistente, realizar a instalação do oracle
-    if shell('cd /usr/lib/oracle/18.3'):
+    try:
+        os.chdir('/usr/lib/oracle/18.3')
         print('Instalação do oracle localizada em: /usr/lib/oracle/18.3')
-        sair_reinstal = 0
+        sair_reinstal =0
         while sair_reinstal ==0:
             reinstalar_oracle = input(Fore.WHITE + Back.BLUE +'Deseja instalar novamente o Oracle?\n (1) Sim (2) Não.')
             if reinstalar_oracle == '1' or reinstalar_oracle == '2':
@@ -347,12 +364,28 @@ def instalar_prerequisitos():
                     alocar_instaladororcl(usuario)
             else:
                 print(Fore.WHITE + Back.BLACK +'Por favor, selecione uma opção válida...')
-
-    else:
+    except FileNotFoundError:
         alocar_instaladororcl(usuario)
 
+
+
+    # if shell('cd /usr/lib/oracle/18.3'):
+    #     print('Instalação do oracle localizada em: /usr/lib/oracle/18.3')
+    #     sair_reinstal = 0
+    #     while sair_reinstal ==0:
+    #         reinstalar_oracle = input(Fore.WHITE + Back.BLUE +'Deseja instalar novamente o Oracle?\n (1) Sim (2) Não.')
+    #         if reinstalar_oracle == '1' or reinstalar_oracle == '2':
+    #             sair_reinstal = 1
+    #             if reinstalar_oracle == '1':
+    #                 alocar_instaladororcl(usuario)
+    #         else:
+    #             print(Fore.WHITE + Back.BLACK +'Por favor, selecione uma opção válida...')
+    #
+    # else:
+    #     alocar_instaladororcl(usuario)
+
     # Verificar a instalação do node, caso inexistente instalar
-    if testar_node():
+    if testar_node(usuario):
         sair_reinstalnode = 0
         while sair_reinstalnode ==0:
             pergunta = input(Fore.WHITE + Back.BLUE +'Deseja instalar novamente o Node?\n'
@@ -363,10 +396,11 @@ def instalar_prerequisitos():
                     alocar_instaladornode(usuario)
             else:
                 print(Fore.WHITE + Back.BLACK +'Insira uma opção válida!')
-
+    else:
+        alocar_instaladornode(usuario)
     # Alocar o arquivo de permições do Linux
     print(Fore.WHITE + Back.BLACK +'Alterando as configurações de conexão do Linux...')
-    alocar_selinux()
+    alocar_selinux(usuario)
 
     # Realizar o comando set permissive
     print('Liberando acesso à este servidor.')
@@ -386,7 +420,7 @@ def instalar_prerequisitos():
     caminho = '/home/{}/mcc'.format(usuario)
     if shell('npm set prefix {}'.format(caminho)):
         print(Fore.WHITE + Back.BLACK +'Prefixo do NPM direcionado para {}'.format(caminho))
-        verdaccio = input(Fore.WHITE + Back.BLUE +'Insira o acesso ao verdaccio da Martonis:\n')
+        verdaccio = input(Fore.WHITE + Back.BLUE +'Insira o acesso ao verdaccio da Martonis: ')
         shell('npm set registry {}'.format(verdaccio))
         shell('npm login')
 

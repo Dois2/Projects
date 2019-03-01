@@ -65,6 +65,3 @@ class OracleManager:
             print('Não foi possível executar o comando "{}"'.format(comando))
         except cx_Oracle.DatabaseError:
             print('Não foi possível se conectar no banco com as credenciais informadas.')
-
-
-
