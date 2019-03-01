@@ -309,38 +309,54 @@ def instalar_prerequisitos():
 
 # Verificação e criação do diretório mcc/lib
     try:
+        # Comando para trocar para o diretório mcc/lib
         os.chdir(caminho_mcc_lib)
+        # Retorno para o implantador
         print('Diretório {} existente'.format(caminho_mcc_lib))
+    # Tratando a a exception gerada caso não exista o diretório mcc/lib
     except FileNotFoundError:
+        # Retorno para o implantador
         print('Não foi localizado o diretório {}.\nRealizando a criação do mesmo.'.format(caminho_mcc_lib))
         shell('mkdir {}'.format(caminho_mcc_lib))
 
+
+    # Temporizador para que seja possível a leitura dos logs em tempo real    
     time.sleep(1)
 
 
 # Verificação e criação do diretório mcc/bin
     try:
+        # ir até o diretório mcc/bin
         os.chdir(caminho_mcc_bin)
+        # Retorno para o implantador
         print('Diretório {} existente'.format(caminho_mcc_bin))
+        # Tratando a exception gerada caso nao exista o diretório mcc/bin
     except FileNotFoundError:
+        # Retorno para o implantador
         print('Não foi localizado o diretório {}.\nRealizando a criação do mesmo.'.format(caminho_mcc_bin))
+        # Comando para criar a pasta mcc/bin    
         shell('mkdir {}'.format(caminho_mcc_bin))
 
 
     # Realizar a criação do arquivo config.json
     print('Iniciando composição e criação do arquivo de conexão ao MongoDB.')
+    # Chamada ao método responsável pela criação do Config.json 
     escrever_arquivo_configjson(usuario)
 
     # Atualização do gerenciador de pacotes do LINUX(YUM)
     print('Iniciando atualização do YUM.')
-    time.sleep(1)
+    # Temporizador para que seja possível acompanhar o log em tempo real
+    time.sleep(2)
+    # Comando para atualizar o YUM
     if shell('sudo yum update'):
+        # Retorno para o implantador
         print('Gerenciador YUM atualizado com sucesso')
+        # Temporizador para acompanhar o log em tempo real
         time.sleep(2)
     else:
         print('Erro ao atualizar o gerenciador YUM.')
 
-    # Realziar a instalação do editor de textos nano
+    # Realizar a instalação do editor de textos nano
     print('Iniciando a instalação do editor NANO.')
     shell('sudo yum install nano.x86_64')
 
@@ -350,11 +366,13 @@ def instalar_prerequisitos():
 
     # Realizar a instalação do python-pip
     print('Iniciando a instalação do PIP...')
+    # Temporizador para conseguir acompanhar o log em tempo real
     time.sleep(3)
     shell('sudo yum install python-pip')
 
     # Realizar o update do pip
     print('Iniciando a atualização do PIP...')
+    # Temporizador para conseguir acompanhar o log em tempo real
     time.sleep(3)
     shell('sudo pip install --upgrade pip')
 
@@ -364,27 +382,40 @@ def instalar_prerequisitos():
           '\n   -Bzip'
           '\n   -Gcc'
           '\n   -Gcc-C++')
+    # Temporizador para conseguir acompanhar o log em tempo real
     time.sleep(3)
+    # Instalando os pacotes
     shell('sudo yum install gcc gcc-c++ bzip2')
 
     # Verificar e caso seja inexistente, realizar a instalação do oracle
     try:
+        # Tentar chegar a pasta da isntalaçao do oracle para verificar se ja existe
         os.chdir('/usr/lib/oracle/18.3')
+        # Retorno ao implantador
         print('Instalação do oracle localizada em: /usr/lib/oracle/18.3')
+        # Criando a estrutura de repetição para verificar se quer re-instalar o oracle
         sair_reinstal =0
         while sair_reinstal ==0:
+            # Pergunta que controla a re-instalação
             reinstalar_oracle = input(Fore.WHITE + Back.BLUE +'Deseja instalar novamente o Oracle?\n (1) Sim (2) Não.')
+            # Controle que garante que o usuário escolha 1 ou 2    
             if reinstalar_oracle == '1' or reinstalar_oracle == '2':
+                # Se a resposta do implantador atender 1 ou 2, saimos da estrutura de repetição
                 sair_reinstal = 1
+                # Se a resposta for 1, ele re-instala
                 if reinstalar_oracle == '1':
+                    # Método que realiza a instalação
                     alocar_instaladororcl(usuario)
             else:
+                # Retorno para o implantador
                 print(Fore.WHITE + Back.BLACK +'Por favor, selecione uma opção válida...')
     except FileNotFoundError:
+        # Se não achar a pasta do Oracle, instalamos diretamente sem perguntas pro implantador
         alocar_instaladororcl(usuario)
 
     # Verificar a instalação do node, caso inexistente instalar
     if testar_node(usuario):
+        # Mesma estrutura de repetição para o Oracle foi utilizada para o node
         sair_reinstalnode = 0
         while sair_reinstalnode ==0:
             pergunta = input(Fore.WHITE + Back.BLUE +'Deseja instalar novamente o Node?\n'
