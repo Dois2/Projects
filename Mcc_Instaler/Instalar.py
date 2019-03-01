@@ -3,6 +3,7 @@ import time
 from colorama import Fore, Back
 
 
+
 # Método utilizado para verificar a execução dos comandos no shell - OK
 def shell(comando):
 
@@ -15,13 +16,20 @@ def shell(comando):
     else:
         return False
 
+    
+
 # Método responsável por verificar a instalação do node
 def testar_node(usuario):
 
+    # Definindo o caminho do instalador ~/Mcc_Instaler
     caminho_intalador = '/home/{}/Mcc_Instaler/'.format(usuario)
+    # Definindo o nome do arquivo de texto
     node__txt = 'node_versao.txt'
+    # Realizando a verificação da versão do node, e alocando o retorno no arquivo denominado acima
     os.system('node --version > {}'.format(caminho_intalador+node__txt))
-    arquivo = ler_arquivo('', caminho_intalador+node__txt)
+    # ler o retorno obtido acima
+    arquivo = ler_arquivo(caminho_intalador, node__txt)
+    # Se o arquivo tiver algo escrito, o método retorna um True, caso contrário ele retorna False
     if arquivo.__len__() > 0:
         versao_do_node = arquivo[0]
         print('Node enconstra-se na versão: {}'.format(versao_do_node))
@@ -35,6 +43,14 @@ def ler_arquivo(caminho_do_arquivo ,nome_do_arquivo):
     # Abrir o arquivo(nome_do_arquivo).
     nome_ler = caminho_do_arquivo+nome_do_arquivo
     comando_testar = 'cd {}'.format(caminho_do_arquivo)
+
+    try:
+        os.chdir(caminho_do_arquivo)
+        print('Consegui realizar o chdir atravéz do OS')
+    except FileNotFoundError:
+        print('Não foi possível realizar o chdir.')
+
+
     if shell(comando_testar):
 
         file = open(nome_ler, 'r')
@@ -367,23 +383,6 @@ def instalar_prerequisitos():
     except FileNotFoundError:
         alocar_instaladororcl(usuario)
 
-
-
-    # if shell('cd /usr/lib/oracle/18.3'):
-    #     print('Instalação do oracle localizada em: /usr/lib/oracle/18.3')
-    #     sair_reinstal = 0
-    #     while sair_reinstal ==0:
-    #         reinstalar_oracle = input(Fore.WHITE + Back.BLUE +'Deseja instalar novamente o Oracle?\n (1) Sim (2) Não.')
-    #         if reinstalar_oracle == '1' or reinstalar_oracle == '2':
-    #             sair_reinstal = 1
-    #             if reinstalar_oracle == '1':
-    #                 alocar_instaladororcl(usuario)
-    #         else:
-    #             print(Fore.WHITE + Back.BLACK +'Por favor, selecione uma opção válida...')
-    #
-    # else:
-    #     alocar_instaladororcl(usuario)
-
     # Verificar a instalação do node, caso inexistente instalar
     if testar_node(usuario):
         sair_reinstalnode = 0
@@ -437,89 +436,4 @@ def instalar_prerequisitos():
         print('Iniciando a instalação do módulo GAMA.')
         shell('npm i -g msi.gama')
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 instalar_prerequisitos()
-
-    #
-    # # Criando as pastas do mcc
-    # shell('sudo mkdir /home/{}/mcc'.format(usuario))
-    # shell('sudo mkdir /home/{}/mcc/bin'.format(usuario))
-    # shell('sudo mkdir /home/{}/mcc/lib'.format(usuario))
-    #
-    #
-    #
-    #
-    # escrever_arquivo_mongonproc()
-    #
-    # # # Realizar a atualização do YUM
-    # # yum update
-    # #
-    # # # Instalação do epel-release
-    # # sudo yum install epel-release
-    # #
-    # # # Instalação do pip
-    # # sudo yum install python-pip
-    # #
-    # # # Upgrade no pip
-    # # pip install --upgrade pip
-    #
-    # # Criar os diretórios mcc e mcc/lib
-    #
-    # # Necessário editar as variaveis de ambiente, podemos subir a instalação do oracle e realizas a edição da oracle home junto
-    # alocar_bashprofile()
-    #
-    #
-    # # Editar o repositório do mongo antes de realizar a instalação
-    # escrever_arquivo_mongorepo()
-    # sudo yum install mongodb-org
-    # # Editar o arquivo mongo-nproc
-    # escrever_arquivo_mongonproc()
-    # # Editar o config do linux
-    # alocar_selinux()
-    # sudo setenforce permissive
-    # # Realizar o cadastro do MongoDB, com as credenciais padrões da Prodata
-    # mongo
-    # use admin
-    # db.createUser( { user: "prodata", pwd: "Pr0d@t@", roles: [ "root" ] } )
-    # # Startar serviço do mongo
-    # sudo mongod start
-    #
-    #
-    # # Realziar a instalação das dependências do node(bzip e gcc).
-    # yum install gcc gcc-c++ bzip2
-    # sudo tar xvfz /home/{}/node-v8.11.3.tar.gz
-    # cd node-v8.11.3
-    # ./configure
-    # sudo make
-    # sudo make install
-    # # Realizar a instalação do ORACLE
-    # sudo yum install oracle-instantclient18.3-basic-18.3.0.0.0-3.x86_64.rpm
-    # cd /usr/lib/oracle/18.3/client64/lib
-    # sudo ln -s libclntsh.so.18.1 libclntsh.so
-    # # Procedimentos do NPM
-    # npm set registry http://dev01.martonis.net:11000
-    # npm login
-    # # Inserir as credenciais
-    # #     USR: martonis
-    # #     PASS: Martonis@123
-    # #     E-MAIL: orcl@orcl.com
-    # npm set prefix ~/mcc
-    # npm i -g mcc.startup
-    # npm i -g mcc.broker
-    # npm i -g mcc.processor
-    # npm i -g mcc.portal
-    # npm i -g msi.gama
-
