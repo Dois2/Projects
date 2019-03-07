@@ -489,5 +489,6 @@ def instalar_prerequisitos():
         # Caso não for possível alocar a ~/mcc, damos o retorno para o Implantador
         # OBSERVAÇÂO - Podemos realizar uma nova verificação neste ponto das pastas ~/mcc e ~/mcc/lib e ~/mcc/bin
         print('Não foi possível definir o diretório ~/mcc como pasta global ao NPM')
-        print('teste')
+        print(Fore.RESET + Back.RESET + '\n\n\nVerifique no Manual de instalacão (http://jira.prodatamobility.com.br:8090/confluence/pages/viewpage.action?pageId=26149257) as "consideracões finais", para realizar as últimas configuracões.'
+            +'\n\n\n----------FIM DA INSTALACÃO----------')
 instalar_prerequisitos()
