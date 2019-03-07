@@ -489,4 +489,5 @@ def instalar_prerequisitos():
         # Caso não for possível alocar a ~/mcc, damos o retorno para o Implantador
         # OBSERVAÇÂO - Podemos realizar uma nova verificação neste ponto das pastas ~/mcc e ~/mcc/lib e ~/mcc/bin
         print('Não foi possível definir o diretório ~/mcc como pasta global ao NPM')
+        print('teste')
 instalar_prerequisitos()
