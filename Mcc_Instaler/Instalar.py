@@ -32,7 +32,7 @@ def testar_node(usuario):
     # Se o arquivo tiver algo escrito, o método retorna um True, caso contrário ele retorna False
     if arquivo.__len__() > 0:
         versao_do_node = arquivo[0]
-        print('Node enconstra-se na versão: {}'.format(versao_do_node))
+        print('Node encontra-se na versão: {}'.format(versao_do_node))
         return True
     else:
         print('Node não encontrado')
@@ -46,7 +46,6 @@ def ler_arquivo(caminho_do_arquivo ,nome_do_arquivo):
 
     try:
         os.chdir(caminho_do_arquivo)
-        print('Consegui realizar o chdir atravéz do OS')
     except FileNotFoundError:
         print('Não foi possível realizar o chdir.')
 
@@ -54,7 +53,7 @@ def ler_arquivo(caminho_do_arquivo ,nome_do_arquivo):
     if shell(comando_testar):
 
         file = open(nome_ler, 'r')
-        print(file)
+        
 
         # Estrutura de repetição, reponsável por contruir uma string com os valores lidos do arquivo aberto à cima.
 
@@ -113,11 +112,15 @@ def escrever_arquivo_configjson(usuario):
 
 
         # Definindo o: Usuário, senha, ip, porta e nome do banco
-        user= input(Fore.WHITE + Back.BLUE +'Insira um usuário válido para o banco MongoDB: ')
-        senha = input('Insira uma senha válida para o banco MongoDB: ')
-        ip = input('Insira um ip válido para o banco MongoDB: ')
-        porta = input('Insira uma porta válida para o banco MongoDB: ')
-        nome_do_banco = input('Insira um nome válido para o banco MongoDB: ')
+        user= input(Fore.WHITE + Back.BLUE +'De acordo com as premissas, devemos possuir um usuário, senha, ip, porta' 
+        +' e nome do banco válidos para o MongoDB. Estas informações serão utilizadas para gerar o arquivo Config.json.\n'
+        'Insira um usuário para o banco MongoDB: ')
+
+
+        senha = input('Insira uma senha para o banco MongoDB: ')
+        ip = input('Insira um ip para o banco MongoDB: ')
+        porta = input('Insira uma porta para o banco MongoDB: ')
+        nome_do_banco = input('Insira um nome para o banco MongoDB: ')
         linha = '"database": "mongodb://{}:{}@{}:{}/{}"'.format(user, senha, ip, porta, nome_do_banco)
 
         # Alocando o texto a ser escrito na variavel escrever
@@ -239,7 +242,7 @@ def alocar_instaladornode(usuario):
 # Método responsável por realizar a instalação do ORACLE
 def alocar_instaladororcl(usuario):
 
-    caminho = '/home/{}/'.format(usuario)
+    caminho = Fore.RESET + Back.RESET +'/home/{}/'.format(usuario)
     caminho_instalador = caminho + 'Mcc_Instaler/'
     print('Caminho do home: {}'.format(caminho))
     print('Caminho do instalador: {}'.format(caminho_instalador))
@@ -275,7 +278,9 @@ def instalar_prerequisitos():
           '\nInstalador desenvolvido por: Lucas Silveira Vieira - PRODATA Mobility Brasil.')
 
     while True:
-        usuario = input(Fore.WHITE + Back.BLUE +'Insira o usuário SSH em que será realizado a instalação: ')
+        usuario = input(Fore.WHITE + Back.BLUE +'Insira o usuário da VM em que será realizado a instalação.'
+        +'\nAtenção: O usuário deve ser equivalente ao login utilizado no software BITVISE.\n'
+        +'Digite o usuário: ')
         try:
             os.chdir('/home/{}'.format(usuario))
             print(Fore.WHITE + Back.BLACK +'Usuário válido')
@@ -339,12 +344,14 @@ def instalar_prerequisitos():
 
 
     # Realizar a criação do arquivo config.json
-    print('Iniciando composição e criação do arquivo de conexão ao MongoDB.')
+    print('\n\n\n----------MONGODB----------\n\n\n')
+    print('Iniciando composição e criação do arquivo config.json para conexão ao MongoDB.')
     # Chamada ao método responsável pela criação do Config.json 
     escrever_arquivo_configjson(usuario)
 
     # Atualização do gerenciador de pacotes do LINUX(YUM)
-    print('Iniciando atualização do YUM.')
+    print('\n\n\n----------YUM----------\n\n\n')
+    print('Iniciando atualização do YUM.\n')
     # Temporizador para que seja possível acompanhar o log em tempo real
     time.sleep(2)
     # Comando para atualizar o YUM
@@ -357,13 +364,17 @@ def instalar_prerequisitos():
         print('Erro ao atualizar o gerenciador YUM.')
 
     # Realizar a instalação do editor de textos nano
+    print('\n\n\n----------NANO----------\n\n\n')
     print('Iniciando a instalação do editor NANO.')
     shell('sudo yum install nano.x86_64')
 
     # Realizar a instalação do Epel-release
+    print('\n\n\n----------EPEL_RELEASE----------\n\n\n')
     print('Iniciando a instalação do EPEL-RELEASE.')
     shell('sudo yum install epel-release.noarch')
 
+
+    print('\n\n\n----------PIP----------\n\n\n')
     # Realizar a instalação do python-pip
     print('Iniciando a instalação do PIP...')
     # Temporizador para conseguir acompanhar o log em tempo real
@@ -378,6 +389,7 @@ def instalar_prerequisitos():
 
 
     # Realizara instalação do Bzip, Gcc e Gcc-c++
+    print('\n\n\n----------PRÉ_REQUISITOS_NODE----------\n\n\n')
     print('Iniciando a instalação dos componentes: '
           '\n   -Bzip'
           '\n   -Gcc'
@@ -392,12 +404,13 @@ def instalar_prerequisitos():
         # Tentar chegar a pasta da isntalaçao do oracle para verificar se ja existe
         os.chdir('/usr/lib/oracle/18.3')
         # Retorno ao implantador
-        print('Instalação do oracle localizada em: /usr/lib/oracle/18.3')
+        print('\n\n\n---------ORACLE----------\n\n\n')
+        print('Instalação do oracle localizada em: /usr/lib/oracle/18.3\n\n\n')
         # Criando a estrutura de repetição para verificar se quer re-instalar o oracle
         sair_reinstal =0
         while sair_reinstal ==0:
             # Pergunta que controla a re-instalação
-            reinstalar_oracle = input(Fore.WHITE + Back.BLUE +'Deseja instalar novamente o Oracle?\n (1) Sim (2) Não.')
+            reinstalar_oracle = input(Fore.WHITE + Back.BLUE +'Deseja instalar novamente o Oracle?\n (1) Sim (2) Não: ')
             # Controle que garante que o usuário escolha 1 ou 2    
             if reinstalar_oracle == '1' or reinstalar_oracle == '2':
                 # Se a resposta do implantador atender 1 ou 2, saimos da estrutura de repetição
@@ -414,9 +427,11 @@ def instalar_prerequisitos():
         alocar_instaladororcl(usuario)
 
     # Verificar a instalação do node, caso inexistente instalar
+    print('\n\n\n----------NODE----------\n\n\n')
     if testar_node(usuario):
         # Mesma estrutura de repetição para o Oracle foi utilizada para o node
         sair_reinstalnode = 0
+        
         while sair_reinstalnode ==0:
             pergunta = input(Fore.WHITE + Back.BLUE +'Deseja instalar novamente o Node?\n'
                              '(1)Sim (2)Não: ')
@@ -446,11 +461,15 @@ def instalar_prerequisitos():
 
 
     # Procedimentos petinentes ao NPM e instalação dos módulos em node
+    print('\n\n\n----------NPM----------\n\n\n')
     print(Fore.WHITE + Back.BLACK +'Iniciando a configuração do Node Package Manager(NPM)')
     caminho = '/home/{}/mcc'.format(usuario)
     if shell('npm set prefix {}'.format(caminho)):
-        print(Fore.WHITE + Back.BLACK +'Prefixo do NPM direcionado para {}'.format(caminho))
-        verdaccio = input(Fore.WHITE + Back.BLUE +'Insira o acesso ao verdaccio da Martonis: ')
+        print(Fore.WHITE + Back.BLACK +'Prefixo do NPM redirecionado para {}'.format(caminho))
+        print('\n\n\n----------VERDACCIO----------\n\n\n')
+        verdaccio = input(Fore.WHITE + Back.BLUE +'Para continuar com os procedimentos do NPM, devemos referenciar o repositório(Verdaccio) da Martonis.'
+        +' O acesso padrão para este repositório, encontra-se em: http://dev01.martonis.net:11000.\n'
+        +'Insira o acesso ao verdaccio da Martonis: ')
         shell('npm set registry {}'.format(verdaccio))
         shell('npm login')
 
@@ -466,5 +485,8 @@ def instalar_prerequisitos():
 
         print('Iniciando a instalação do módulo GAMA.')
         shell('npm i -g msi.gama')
-
+    else:
+        # Caso não for possível alocar a ~/mcc, damos o retorno para o Implantador
+        # OBSERVAÇÂO - Podemos realizar uma nova verificação neste ponto das pastas ~/mcc e ~/mcc/lib e ~/mcc/bin
+        print('Não foi possível definir o diretório ~/mcc como pasta global ao NPM')
 instalar_prerequisitos()
