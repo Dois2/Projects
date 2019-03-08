@@ -272,8 +272,8 @@ def alocar_instaladororcl(usuario):
 def instalar_prerequisitos():
 
     # Boas vindas ao instalador
-    print(Fore.RESET + Back.RESET +'Bem vindo ao instalador do MCC!\n'
-          'Por favor, insira as informações corretas para que a instalação ocorra corretamente.\n'
+    print(Fore.RESET + Back.RESET +'Bem-vindo ao instalador do MCC!\n'
+          'Por favor, insira as informações corretas para que a instalação ocorra corretamente.\n Preste atenção nos logs, alguymas etapas precisam da sua confirmação com Y ou N.\n'
           '\nO manual do instalador está disponível no link: '+ Back.LIGHTWHITE_EX + Fore.MAGENTA+'"http://jira.prodatamobility.com.br:8090/confluence/pages/viewpage.action?pageId=26149257"' + Fore.RESET + Back.RESET+
           '\nInstalador desenvolvido por: Lucas Silveira Vieira - PRODATA Mobility Brasil.')
 
