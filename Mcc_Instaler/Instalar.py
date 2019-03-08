@@ -492,3 +492,5 @@ def instalar_prerequisitos():
         print(Fore.RESET + Back.RESET + '\n\n\nVerifique no Manual de instalacão (http://jira.prodatamobility.com.br:8090/confluence/pages/viewpage.action?pageId=26149257) as "consideracões finais", para realizar as últimas configuracões.'
             +'\n\n\n----------FIM DA INSTALACÃO----------')
 instalar_prerequisitos()
+
+print('teste')
