@@ -111,16 +111,16 @@ def escrever_arquivo_configjson(usuario):
 
 
         # Definindo o: Usuário, senha, ip, porta e nome do banco
-        user= input(Fore.WHITE + Back.BLUE +'De acordo com as premissas, devemos possuir um usuário, senha, ip, porta' 
-        +' e nome do banco válidos para o MongoDB. Estas informações serão utilizadas para gerar o arquivo Config.json.\n\nOBS: O MESMO USUÁRIO E SENHA DEVE SER UTILIZADO NA CRIAÇÃO DO BANCO MONGODB.\n\n'
+        print(Fore.RESET + Back.RESET +'De acordo com as premissas, devemos possuir um usuário, senha, ip, porta' 
+        +' e nome do banco válidos para o MongoDB. Estas informações serão utilizadas para gerar o arquivo Config.json.\n\nOBS: O MESMO USUÁRIO E SENHA DEVE SER UTILIZADO NA CRIAÇÃO DO BANCO MONGODB.\n\n')
 
-        'Insira um usuário para o banco MongoDB: ')
+        user = 'prodata'
 
 
-        senha = input('Insira uma senha para o banco MongoDB: ')
+        senha = 'Pr0d%40t%40'
         ip = input('Insira um ip para o banco MongoDB: ')
-        porta = input('Insira uma porta para o banco MongoDB: ')
-        nome_do_banco = input('Insira um nome para o banco MongoDB: ')
+        porta = '27017'
+        nome_do_banco = '{}_conf'.format(usuario)
         linha = '"database": "mongodb://{}:{}@{}:{}/{}"'.format(user, senha, ip, porta, nome_do_banco)
 
         # Alocando o texto a ser escrito na variavel escrever
@@ -133,7 +133,8 @@ def escrever_arquivo_configjson(usuario):
 
         # Fechar o arquivo aberto e informar que foi possivel escrever no diretorio especificado
         file.close()
-        print(Fore.WHITE + Back.BLACK +'Arquivo "{}" criado com sucesso!'.format(arquivo_caminho))
+        print(Fore.GREEN + Back.BLACK +'\n\nArquivo "{}" criado com sucesso!'.format(arquivo_caminho))
+        print(Fore.RESET+Back.RESET)
     else:
         # Caso caminho seja inválido, exibimos a mensagem que não foi possivel escrever
         print('Caminho "{}" inexistente'.format(caminho))
@@ -274,7 +275,7 @@ def instalar_prerequisitos():
     print(Fore.RESET + Back.RESET +'Bem-vindo ao instalador do MCC!\n'
           'Por favor, insira as informações corretas para que a instalação ocorra corretamente.\n Preste atenção nos logs, alguymas etapas precisam da sua confirmação com Y ou N.\n'
           '\nO manual do instalador está disponível no link: '+ Back.LIGHTWHITE_EX + Fore.MAGENTA+'"http://jira.prodatamobility.com.br:8090/confluence/pages/viewpage.action?pageId=26149257"' + Fore.RESET + Back.RESET+
-          '\nInstalador desenvolvido por: Lucas Silveira Vieira - PRODATA Mobility Brasil.')
+          '\nInstalador desenvolvido por: Lucas Silveira Vieira (Matriz) - Prodata Mobility Brasil.')
 
     while True:
         usuario = input(Fore.WHITE + Back.BLUE +'Insira o usuário da VM em que será realizado a instalação.'
@@ -282,7 +283,8 @@ def instalar_prerequisitos():
         +'Digite o usuário: ')
         try:
             os.chdir('/home/{}'.format(usuario))
-            print(Fore.WHITE + Back.BLACK +'Usuário válido')
+            print(Fore.GREEN + Back.BLACK +'\n\nUsuário válido')
+            print(Fore.RESET+Back.RESET)
             break
         except FileNotFoundError:
             print('Por favor insira um usuário válido.')
@@ -347,9 +349,9 @@ def instalar_prerequisitos():
     print('Iniciando a criação do arquivo config.json para conexão ao MongoDB.')
     # Chamada ao método responsável pela criação do Config.json 
     escrever_arquivo_configjson(usuario)
-    print('\n\nArquivo Config.json criado com sucesso.') Colocar em verde
+    print(Fore.GREEN +'\n\nArquivo Config.json criado com sucesso.') 
 
-    print('\n\n\n----------Iniciando instalação de pré-requisitos----------\n\n\n')
+    print(Fore.RESET + Back.RESET+'\n\n\n----------Iniciando instalação de pré-requisitos----------\n\n\n')
 
     # Atualização do gerenciador de pacotes do LINUX(YUM)
     print('\n\n\n----------Atualizando o pacote YUM----------\n\n\n')
@@ -358,25 +360,25 @@ def instalar_prerequisitos():
     # Comando para atualizar o YUM
     if shell('sudo yum update'):
         # Retorno para o implantador
-        print('\n\nGerenciador YUM atualizado com sucesso.')
+        print(Fore.GREEN + '\n\nGerenciador YUM atualizado com sucesso.')
         # Temporizador para acompanhar o log em tempo real
         time.sleep(2)
     else:
-        print('\n\nErro ao atualizar o gerenciador YUM.') Colocar em vermelho
+        print(Fore.RED+'\n\nErro ao atualizar o gerenciador YUM.')
 
     # Realizar a instalação do editor de textos nano
-    print('\n\n\n----------Instalando: NANO----------\n\n\n')
+    print(Fore.RESET+Back.RESET+'\n\n\n----------Iniciando instalação do Nano----------\n\n\n')
     shell('sudo yum install nano.x86_64')
+    print(Fore.GREEN+'\n\nNano instalado com sucesso.')
 
     # Realizar a instalação do Epel-release
-    print('\n\n\n----------EPEL_RELEASE----------\n\n\n')
-    print('Iniciando a instalação do EPEL-RELEASE.')
+    print(Fore.RESET+Back.RESET+'\n\n\n----------Iniciando instalação do Epel Release----------\n\n\n')
     shell('sudo yum install epel-release.noarch')
+    print(Fore.GREEN+'Epel Release instalado com sucesso.\n')
 
 
-    print('\n\n\n----------PIP----------\n\n\n')
+    print(Fore.RESET+Back.RESET+'\n\n\n----------Iniciando instalação do PIP----------\n\n\n')
     # Realizar a instalação do python-pip
-    print('Iniciando a instalação do PIP...')
     # Temporizador para conseguir acompanhar o log em tempo real
     time.sleep(3)
     shell('sudo yum install python-pip')
@@ -386,23 +388,24 @@ def instalar_prerequisitos():
     # Temporizador para conseguir acompanhar o log em tempo real
     time.sleep(3)
     shell('sudo pip install --upgrade pip')
+    print(Fore.GREEN+'Pip instalado/atualizado com sucesso.\n')
 
 
     # Realizara instalação do Bzip, Gcc e Gcc-c++
-    print('\n\n\n----------Pré-requisitos para instalar o NODE----------\n\n\n')
-    print('\n   -Gcc'
+    print(Fore.RESET+Back.RESET+'\n\n\n----------Pré-requisitos para instalar o NODE----------\n\n\n')
+    print('   -Gcc'
           '\n   -Gcc-C++'
           '\n   -Bzip\n')
     # Temporizador para conseguir acompanhar o log em tempo real
     time.sleep(3)
     # Instalando os pacotes
     shell('sudo yum install gcc gcc-c++ bzip2')
-    print('\n\nPré-requisitos do node instalados com sucesso.') Colocar em verde
+    print(Fore.GREEN+'\n\nPré-requisitos do node instalados com sucesso.')
 
-    Remover a reinstalação
+    
     # Verificar e caso seja inexistente, realizar a instalação do oracle
     try: 
-        print('\n\n\n---------Iniciando instalação do Oracle Client----------\n\n\n')
+        print(Fore.RESET+Back.RESET+'\n\n\n---------Iniciando instalação do Oracle Client----------\n\n\n')
         # Tentar chegar a pasta da isntalaçao do oracle para verificar se ja existe
         os.chdir('/usr/lib/oracle/18.3')
         # Retorno ao implantador
@@ -429,8 +432,9 @@ def instalar_prerequisitos():
 
     # Verificar a instalação do node, caso inexistente instalar
     print(Fore.RESET + Back.RESET +'\n\n\n----------Iniciando instalação do Node----------\n\n\n')
-        retirar re-instalação
+        
     if testar_node(usuario):
+        print('\n')
         # Mesma estrutura de repetição para o Oracle foi utilizada para o node
         # sair_reinstalnode = 0
         
@@ -445,17 +449,17 @@ def instalar_prerequisitos():
         #         print(Fore.WHITE + Back.BLACK +'Insira uma opção válida!')
     else:
         alocar_instaladornode(usuario)
-        print('\nNode instalado com sucesso.') deixar em verde
+        print(Fore.GREEN+ '\nNode instalado com sucesso.')
     # Alocar o arquivo de permições do Linux
-    print(Fore.WHITE + Back.BLACK +'Alterando as configurações de conexão do Linux...')
+    print(Fore.RESET + Back.RESET +'Alterando as configurações de conexão do Linux...')
     alocar_selinux(usuario)
 
     # Realizar o comando set permissive
     print('Liberando acesso à este servidor.')
     if shell('sudo setenforce permissive'):
-        print('Liberação de acesso ao servidor realizado com sucesso')
+        print(Fore.GREEN+'Liberação de acesso ao servidor realizado com sucesso')
     else:
-        print('Não foi possível realizar a liberação de porta.')
+        print(Fore.RED+'Não foi possível realizar a liberação de porta.')
 
     # Procedimentos para finalizar instalação do ORACLE
     os.chdir('/usr/lib/oracle/18.3/client64/lib')
@@ -464,7 +468,7 @@ def instalar_prerequisitos():
 
 
     # Procedimentos petinentes ao NPM e instalação dos módulos em node
-    print('\n\n\n----------Iniciando configuração do NPM----------\n\n\n')
+    print(Fore.RESET+Back.RESET+'\n\n\n----------Iniciando configuração do NPM----------\n\n\n')
     caminho = '/home/{}/mcc'.format(usuario)
     if shell('npm set prefix {}'.format(caminho)):
         print(Fore.RESET+Back.RESET+'Prefixo do NPM redirecionado para {}\n'.format(caminho))
@@ -477,21 +481,28 @@ def instalar_prerequisitos():
 
         print(Fore.WHITE + Back.BLACK +'Iniciando a instalação do módulo STARTUP.\n')
         shell('npm i -g mcc.startup')
+        print(Fore.GREEN +'Fim da instalação do módulo STARTUP\n\n')
+        print(Fore.RESET)
 
         print('\n\nIniciando a instalação do módulo BROKER.\n')
         shell('npm i -g mcc.broker')
+        print(Fore.GREEN +'Fim da instalação do módulo BROKER\n\n')
+        print(Fore.RESET)
 
         print('\n\nIniciando a instalação do módulo PORTAL.\n')
         shell('npm i -g mcc.portal')
+        print(Fore.GREEN +'Fim da instalação do módulo PORTAL\n\n')
+        print(Fore.RESET)
 
         print('\n\nIniciando a instalação do módulo GAMA.\n')
         shell('npm i -g msi.gama')
+        print(Fore.GREEN +'Fim da instalação do módulo GAMA\n\n')
+        print(Fore.RESET)
     else:
         # Caso não for possível alocar a ~/mcc, damos o retorno para o Implantador
         # OBSERVAÇÂO - Podemos realizar uma nova verificação neste ponto das pastas ~/mcc e ~/mcc/lib e ~/mcc/bin
-        print('Não foi possível definir o diretório ~/mcc como pasta global ao NPM')
-        print(Fore.RESET + Back.RESET + '\n\n\nVerifique no Manual de instalacão (http://jira.prodatamobility.com.br:8090/confluence/pages/viewpage.action?pageId=26149257) as "consideracões finais", para realizar as últimas configuracões.'
-            +'\n\n\n----------FIM DA INSTALACÃO----------')
+        print(Fore.RED+'Não foi possível definir o diretório ~/mcc como pasta global ao NPM')
+        
 instalar_prerequisitos()
 
-print('Fim da instalação dos pré requisitos e módulos em node. Continuar os procedimentos no ')Colocar as consierações finais
+print('Fim da instalação dos pré requisitos e módulos em node. Continuar os procedimentos a partir do item 11.')
