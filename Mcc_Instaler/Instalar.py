@@ -32,10 +32,9 @@ def testar_node(usuario):
     # Se o arquivo tiver algo escrito, o método retorna um True, caso contrário ele retorna False
     if arquivo.__len__() > 0:
         versao_do_node = arquivo[0]
-        print('Node encontra-se na versão: {}'.format(versao_do_node))
+        print('Node já instalado.\n     ->Versão: {}'.format(versao_do_node))
         return True
     else:
-        print('Node não encontrado')
         return False
 
 # Método responsável pela leitura dos arquivos - OK
@@ -113,7 +112,8 @@ def escrever_arquivo_configjson(usuario):
 
         # Definindo o: Usuário, senha, ip, porta e nome do banco
         user= input(Fore.WHITE + Back.BLUE +'De acordo com as premissas, devemos possuir um usuário, senha, ip, porta' 
-        +' e nome do banco válidos para o MongoDB. Estas informações serão utilizadas para gerar o arquivo Config.json.\n'
+        +' e nome do banco válidos para o MongoDB. Estas informações serão utilizadas para gerar o arquivo Config.json.\n\nOBS: O MESMO USUÁRIO E SENHA DEVE SER UTILIZADO NA CRIAÇÃO DO BANCO MONGODB.\n\n'
+
         'Insira um usuário para o banco MongoDB: ')
 
 
@@ -217,8 +217,7 @@ def alocar_instaladornode(usuario):
     caminho_intalador = '/home/{}/Mcc_Instaler/'.format(usuario)
     if shell('cp {} {}'.format(caminho_intalador+nome_do_node, caminho+nome_do_node)):
 
-        print("Node alocado com sucesso!")
-        print(caminho+nome_do_node)
+        
         os.chdir(caminho)
 
         if shell('sudo tar -xvf {}'.format(caminho+nome_do_node)):
@@ -236,7 +235,7 @@ def alocar_instaladornode(usuario):
             return True
 
     else:
-        print('não foi possível alocar o node, no caminho "{}"'.format(caminho))
+        print('Não foi possível alocar o node, no caminho "{}"'.format(caminho))
         return False
 
 # Método responsável por realizar a instalação do ORACLE
@@ -304,9 +303,9 @@ def instalar_prerequisitos():
 # Verificação e criação do caminho mcc
     try:
         os.chdir(caminho_mcc)
-        print('Diretório {} existente.'.format(caminho_mcc))
+        print('Diretório {} já existente.'.format(caminho_mcc))
     except FileNotFoundError:
-        print('Não foi localizado o caminho ~/mcc.\nRealizando a criação do mesmo.')
+        print('Não foi localizado o caminho ~/mcc.\nRealizando a criação do diretório.')
         shell('mkdir {}'.format(caminho_mcc))
 
 
@@ -321,7 +320,7 @@ def instalar_prerequisitos():
     # Tratando a a exception gerada caso não exista o diretório mcc/lib
     except FileNotFoundError:
         # Retorno para o implantador
-        print('Não foi localizado o diretório {}.\nRealizando a criação do mesmo.'.format(caminho_mcc_lib))
+        print('Não foi localizado o diretório {}.\nRealizando a criação do diretório.'.format(caminho_mcc_lib))
         shell('mkdir {}'.format(caminho_mcc_lib))
 
 
@@ -338,34 +337,35 @@ def instalar_prerequisitos():
         # Tratando a exception gerada caso nao exista o diretório mcc/bin
     except FileNotFoundError:
         # Retorno para o implantador
-        print('Não foi localizado o diretório {}.\nRealizando a criação do mesmo.'.format(caminho_mcc_bin))
+        print('Não foi localizado o diretório {}.\nRealizando a criação do diretório.'.format(caminho_mcc_bin))
         # Comando para criar a pasta mcc/bin    
         shell('mkdir {}'.format(caminho_mcc_bin))
 
 
     # Realizar a criação do arquivo config.json
-    print('\n\n\n----------MONGODB----------\n\n\n')
-    print('Iniciando composição e criação do arquivo config.json para conexão ao MongoDB.')
+    print('\n\n\n----------Iniciando instalação do MONGODB----------\n\n\n')
+    print('Iniciando a criação do arquivo config.json para conexão ao MongoDB.')
     # Chamada ao método responsável pela criação do Config.json 
     escrever_arquivo_configjson(usuario)
+    print('\n\nArquivo Config.json criado com sucesso.') Colocar em verde
+
+    print('\n\n\n----------Iniciando instalação de pré-requisitos----------\n\n\n')
 
     # Atualização do gerenciador de pacotes do LINUX(YUM)
-    print('\n\n\n----------YUM----------\n\n\n')
-    print('Iniciando atualização do YUM.\n')
+    print('\n\n\n----------Atualizando o pacote YUM----------\n\n\n')
     # Temporizador para que seja possível acompanhar o log em tempo real
     time.sleep(2)
     # Comando para atualizar o YUM
     if shell('sudo yum update'):
         # Retorno para o implantador
-        print('Gerenciador YUM atualizado com sucesso')
+        print('\n\nGerenciador YUM atualizado com sucesso.')
         # Temporizador para acompanhar o log em tempo real
         time.sleep(2)
     else:
-        print('Erro ao atualizar o gerenciador YUM.')
+        print('\n\nErro ao atualizar o gerenciador YUM.') Colocar em vermelho
 
     # Realizar a instalação do editor de textos nano
-    print('\n\n\n----------NANO----------\n\n\n')
-    print('Iniciando a instalação do editor NANO.')
+    print('\n\n\n----------Instalando: NANO----------\n\n\n')
     shell('sudo yum install nano.x86_64')
 
     # Realizar a instalação do Epel-release
@@ -389,60 +389,63 @@ def instalar_prerequisitos():
 
 
     # Realizara instalação do Bzip, Gcc e Gcc-c++
-    print('\n\n\n----------PRÉ_REQUISITOS_NODE----------\n\n\n')
-    print('Iniciando a instalação dos componentes: '
-          '\n   -Bzip'
-          '\n   -Gcc'
-          '\n   -Gcc-C++')
+    print('\n\n\n----------Pré-requisitos para instalar o NODE----------\n\n\n')
+    print('\n   -Gcc'
+          '\n   -Gcc-C++'
+          '\n   -Bzip\n')
     # Temporizador para conseguir acompanhar o log em tempo real
     time.sleep(3)
     # Instalando os pacotes
     shell('sudo yum install gcc gcc-c++ bzip2')
+    print('\n\nPré-requisitos do node instalados com sucesso.') Colocar em verde
 
+    Remover a reinstalação
     # Verificar e caso seja inexistente, realizar a instalação do oracle
-    try:
+    try: 
+        print('\n\n\n---------Iniciando instalação do Oracle Client----------\n\n\n')
         # Tentar chegar a pasta da isntalaçao do oracle para verificar se ja existe
         os.chdir('/usr/lib/oracle/18.3')
         # Retorno ao implantador
-        print('\n\n\n---------ORACLE----------\n\n\n')
-        print('Instalação do oracle localizada em: /usr/lib/oracle/18.3\n\n\n')
-        # Criando a estrutura de repetição para verificar se quer re-instalar o oracle
-        sair_reinstal =0
-        while sair_reinstal ==0:
-            # Pergunta que controla a re-instalação
-            reinstalar_oracle = input(Fore.WHITE + Back.BLUE +'Deseja instalar novamente o Oracle?\n (1) Sim (2) Não: ')
-            # Controle que garante que o usuário escolha 1 ou 2    
-            if reinstalar_oracle == '1' or reinstalar_oracle == '2':
-                # Se a resposta do implantador atender 1 ou 2, saimos da estrutura de repetição
-                sair_reinstal = 1
-                # Se a resposta for 1, ele re-instala
-                if reinstalar_oracle == '1':
-                    # Método que realiza a instalação
-                    alocar_instaladororcl(usuario)
-            else:
-                # Retorno para o implantador
-                print(Fore.WHITE + Back.BLACK +'Por favor, selecione uma opção válida...')
+        print('Instalação do Oracle Client já existente em: /usr/lib/oracle/18.3\n\n\n')
+        # # Criando a estrutura de repetição para verificar se quer re-instalar o oracle
+        # sair_reinstal =0
+        # while sair_reinstal ==0:
+        #     # Pergunta que controla a re-instalação
+        #     reinstalar_oracle = input(Fore.WHITE + Back.BLUE +'Deseja instalar novamente o Oracle?\n (1) Sim (2) Não: ')
+        #     # Controle que garante que o usuário escolha 1 ou 2    
+        #     if reinstalar_oracle == '1' or reinstalar_oracle == '2':
+        #         # Se a resposta do implantador atender 1 ou 2, saimos da estrutura de repetição
+        #         sair_reinstal = 1
+        #         # Se a resposta for 1, ele re-instala
+        #         if reinstalar_oracle == '1':
+        #             # Método que realiza a instalação
+        #             alocar_instaladororcl(usuario)
+        #     else:
+        #         # Retorno para o implantador
+        #         print(Fore.WHITE + Back.BLACK +'Por favor, selecione uma opção válida...')
     except FileNotFoundError:
         # Se não achar a pasta do Oracle, instalamos diretamente sem perguntas pro implantador
         alocar_instaladororcl(usuario)
 
     # Verificar a instalação do node, caso inexistente instalar
-    print('\n\n\n----------NODE----------\n\n\n')
+    print(Fore.RESET + Back.RESET +'\n\n\n----------Iniciando instalação do Node----------\n\n\n')
+        retirar re-instalação
     if testar_node(usuario):
         # Mesma estrutura de repetição para o Oracle foi utilizada para o node
-        sair_reinstalnode = 0
+        # sair_reinstalnode = 0
         
-        while sair_reinstalnode ==0:
-            pergunta = input(Fore.WHITE + Back.BLUE +'Deseja instalar novamente o Node?\n'
-                             '(1)Sim (2)Não: ')
-            if pergunta == '1' or pergunta == '2':
-                sair_reinstalnode = 1
-                if pergunta =='1':
-                    alocar_instaladornode(usuario)
-            else:
-                print(Fore.WHITE + Back.BLACK +'Insira uma opção válida!')
+        # while sair_reinstalnode ==0:
+        #     pergunta = input(Fore.WHITE + Back.BLUE +'Deseja instalar novamente o Node?\n'
+        #                      '(1)Sim (2)Não: ')
+        #     if pergunta == '1' or pergunta == '2':
+        #         sair_reinstalnode = 1
+        #         if pergunta =='1':
+        #             alocar_instaladornode(usuario)
+        #     else:
+        #         print(Fore.WHITE + Back.BLACK +'Insira uma opção válida!')
     else:
         alocar_instaladornode(usuario)
+        print('\nNode instalado com sucesso.') deixar em verde
     # Alocar o arquivo de permições do Linux
     print(Fore.WHITE + Back.BLACK +'Alterando as configurações de conexão do Linux...')
     alocar_selinux(usuario)
@@ -461,29 +464,27 @@ def instalar_prerequisitos():
 
 
     # Procedimentos petinentes ao NPM e instalação dos módulos em node
-    print('\n\n\n----------NPM----------\n\n\n')
-    print(Fore.WHITE + Back.BLACK +'Iniciando a configuração do Node Package Manager(NPM)')
+    print('\n\n\n----------Iniciando configuração do NPM----------\n\n\n')
     caminho = '/home/{}/mcc'.format(usuario)
     if shell('npm set prefix {}'.format(caminho)):
-        print(Fore.WHITE + Back.BLACK +'Prefixo do NPM redirecionado para {}'.format(caminho))
-        print('\n\n\n----------VERDACCIO----------\n\n\n')
-        verdaccio = input(Fore.WHITE + Back.BLUE +'Para continuar com os procedimentos do NPM, devemos referenciar o repositório(Verdaccio) da Martonis.'
-        +' O acesso padrão para este repositório, encontra-se em: http://dev01.martonis.net:11000.\n'
-        +'Insira o acesso ao verdaccio da Martonis: ')
+        print(Fore.RESET+Back.RESET+'Prefixo do NPM redirecionado para {}\n'.format(caminho))
+        print('Para continuar com os procedimentos do NPM, devemos referenciar o repositório(Verdaccio) da Martonis.'
+        +' O acesso padrão para este repositório, encontra-se em: http://dev01.martonis.net:11000.\n')
+        verdaccio = input(Fore.WHITE + Back.BLUE +'Insira o acesso ao verdaccio da Martonis: ')
         shell('npm set registry {}'.format(verdaccio))
         shell('npm login')
 
 
-        print(Fore.WHITE + Back.BLACK +'Iniciando a instalação do módulo STARTUP.')
+        print(Fore.WHITE + Back.BLACK +'Iniciando a instalação do módulo STARTUP.\n')
         shell('npm i -g mcc.startup')
 
-        print('Iniciando a instalação do módulo BROKER.')
+        print('\n\nIniciando a instalação do módulo BROKER.\n')
         shell('npm i -g mcc.broker')
 
-        print('Iniciando a instalação do módulo PORTAL.')
+        print('\n\nIniciando a instalação do módulo PORTAL.\n')
         shell('npm i -g mcc.portal')
 
-        print('Iniciando a instalação do módulo GAMA.')
+        print('\n\nIniciando a instalação do módulo GAMA.\n')
         shell('npm i -g msi.gama')
     else:
         # Caso não for possível alocar a ~/mcc, damos o retorno para o Implantador
@@ -493,4 +494,4 @@ def instalar_prerequisitos():
             +'\n\n\n----------FIM DA INSTALACÃO----------')
 instalar_prerequisitos()
 
-print('teste')
+print('Fim da instalação dos pré requisitos e módulos em node. Continuar os procedimentos no ')Colocar as consierações finais
