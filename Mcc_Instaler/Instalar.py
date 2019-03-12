@@ -111,14 +111,13 @@ def escrever_arquivo_configjson(usuario):
 
 
         # Definindo o: Usuário, senha, ip, porta e nome do banco
-        print(Fore.RESET + Back.RESET +'De acordo com as premissas, devemos possuir um usuário, senha, ip, porta' 
-        +' e nome do banco válidos para o MongoDB. Estas informações serão utilizadas para gerar o arquivo Config.json.\n\nOBS: O MESMO USUÁRIO E SENHA DEVE SER UTILIZADO NA CRIAÇÃO DO BANCO MONGODB.\n\n')
-
+        
         user = 'prodata'
 
 
         senha = 'Pr0d%40t%40'
-        ip = input('Insira um ip para o banco MongoDB: ')
+        ip = input(Fore.WHITE+ Back.BLUE +'Insira um ip para o banco MongoDB: ')
+        # print(Fore.RESET+Back.RESET)
         porta = '27017'
         nome_do_banco = '{}_conf'.format(usuario)
         linha = '"database": "mongodb://{}:{}@{}:{}/{}"'.format(user, senha, ip, porta, nome_do_banco)
@@ -505,4 +504,5 @@ def instalar_prerequisitos():
         
 instalar_prerequisitos()
 
-print('Fim da instalação dos pré requisitos e módulos em node. Continuar os procedimentos a partir do item 11.')
+print(Fore.GREEN+'Fim da instalação dos pré requisitos e módulos em node. Continuar os procedimentos a partir do item 9.\n\n')
+print(Fore.RESET)
