@@ -250,7 +250,7 @@ def alocar_instaladororcl(usuario):
     if shell('sudo cp {} {}'.format(caminho_instalador+nome_do_oracle, caminho + nome_do_oracle)):
         print('Oracle alocado em "{}" com sucesso!\n'.format(caminho+nome_do_oracle))
         print('Iniciando procedimento de instalação...')
-        if shell('sudo yum install {}'.format(caminho+nome_do_oracle)):
+        if shell('sudo yum localinstall {}'.format(caminho+nome_do_oracle)):
             print('Oracle instalado com sucesso!')
             return True
     else:
