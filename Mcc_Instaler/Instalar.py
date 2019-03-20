@@ -460,6 +460,9 @@ def instalar_prerequisitos():
         
     if testar_node(usuario):
         print('\n')
+
+            # TODO
+            # FIXME
         # Mesma estrutura de repetição para o Oracle foi utilizada para o node
         # sair_reinstalnode = 0
         
@@ -533,3 +536,5 @@ instalar_prerequisitos()
 print(Fore.GREEN+'Fim da instalação dos pré requisitos e módulos em node.'+
 'Continuar os procedimentos a partir do 9º passo do manual: http://jira.prodatamobility.com.br:8090/confluence/pages/viewpage.action?pageId=26149257\n\n')
 print(Fore.RESET)
+
+
