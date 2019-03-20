@@ -3,6 +3,17 @@ import time
 from colorama import Fore, Back
 
 
+def verificar_install(nome_pacote):
+    nome_teste = 'teste.txt'
+    if shell('rpm -qa |  grep {} > {}'.format(nome_pacote,nome_teste)):
+        file = open(nome_teste, 'r')
+        for line in file:
+            
+            if line.startswith(nome_pacote):
+                
+                return True
+            else:
+                return False
 
 # Método utilizado para verificar a execução dos comandos no shell - OK
 def shell(comando):
@@ -241,7 +252,7 @@ def alocar_instaladornode(usuario):
 # Método responsável por realizar a instalação do ORACLE
 def alocar_instaladororcl(usuario):
 
-    caminho = Fore.RESET + Back.RESET +'/home/{}/'.format(usuario)
+    caminho = '/home/{}/'.format(usuario)
     caminho_instalador = caminho + 'Mcc_Instaler/'
     print('Caminho do home: {}'.format(caminho))
     print('Caminho do instalador: {}'.format(caminho_instalador))
@@ -249,7 +260,7 @@ def alocar_instaladororcl(usuario):
     if shell('sudo cp {} {}'.format(caminho_instalador+nome_do_oracle, caminho + nome_do_oracle)):
         print('Oracle alocado em "{}" com sucesso!\n'.format(caminho+nome_do_oracle))
         print('Iniciando procedimento de instalação...')
-        if shell('sudo yum install {}'.format(caminho+nome_do_oracle)):
+        if shell('sudo yum localinstall {}'.format(caminho+nome_do_oracle)):
             print('Oracle instalado com sucesso!')
             return True
     else:
@@ -356,24 +367,34 @@ def instalar_prerequisitos():
     print('\n\n\n----------Atualizando o pacote YUM----------\n\n\n')
     # Temporizador para que seja possível acompanhar o log em tempo real
     time.sleep(2)
-    # Comando para atualizar o YUM
-    if shell('sudo yum update'):
-        # Retorno para o implantador
-        print(Fore.GREEN + '\n\nGerenciador YUM atualizado com sucesso.')
-        # Temporizador para acompanhar o log em tempo real
-        time.sleep(2)
-    else:
-        print(Fore.RED+'\n\nErro ao atualizar o gerenciador YUM.')
+    
+    # Não realizar a a instalação do YUM.  
+    
+    # # Comando para atualizar o YUM
+    # if shell('sudo yum update'):
+    #     # Retorno para o implantador
+    #     print(Fore.GREEN + '\n\nGerenciador YUM atualizado com sucesso.')
+    #     # Temporizador para acompanhar o log em tempo real
+    #     time.sleep(2)
+    # else:
+    #     print(Fore.RED+'\n\nErro ao atualizar o gerenciador YUM.')
 
     # Realizar a instalação do editor de textos nano
     print(Fore.RESET+Back.RESET+'\n\n\n----------Iniciando instalação do Nano----------\n\n\n')
-    shell('sudo yum install nano.x86_64')
-    print(Fore.GREEN+'\n\nNano instalado com sucesso.')
+    if shell('sudo yum install nano.x86_64'):
+        print(Fore.GREEN+'\n\nNano instalado com sucesso.')
+    
 
     # Realizar a instalação do Epel-release
     print(Fore.RESET+Back.RESET+'\n\n\n----------Iniciando instalação do Epel Release----------\n\n\n')
-    shell('sudo yum install epel-release.noarch')
-    print(Fore.GREEN+'Epel Release instalado com sucesso.\n')
+
+    # checar a instalação do epel-release com o npm -na
+    if verificar_install('epel-release'):
+        print('Epel-release já instalado.')
+        time.sleep(2)
+    else:
+        shell('sudo yum install epel-release.noarch')
+        print(Fore.GREEN+'Epel Release instalado com sucesso.\n')
 
 
     print(Fore.RESET+Back.RESET+'\n\n\n----------Iniciando instalação do PIP----------\n\n\n')
@@ -403,31 +424,36 @@ def instalar_prerequisitos():
 
     
     # Verificar e caso seja inexistente, realizar a instalação do oracle
-    try: 
-        print(Fore.RESET+Back.RESET+'\n\n\n---------Iniciando instalação do Oracle Client----------\n\n\n')
-        # Tentar chegar a pasta da isntalaçao do oracle para verificar se ja existe
-        os.chdir('/usr/lib/oracle/18.3')
-        # Retorno ao implantador
-        print('Instalação do Oracle Client já existente em: /usr/lib/oracle/18.3\n\n\n')
-        # # Criando a estrutura de repetição para verificar se quer re-instalar o oracle
-        # sair_reinstal =0
-        # while sair_reinstal ==0:
-        #     # Pergunta que controla a re-instalação
-        #     reinstalar_oracle = input(Fore.WHITE + Back.BLUE +'Deseja instalar novamente o Oracle?\n (1) Sim (2) Não: ')
-        #     # Controle que garante que o usuário escolha 1 ou 2    
-        #     if reinstalar_oracle == '1' or reinstalar_oracle == '2':
-        #         # Se a resposta do implantador atender 1 ou 2, saimos da estrutura de repetição
-        #         sair_reinstal = 1
-        #         # Se a resposta for 1, ele re-instala
-        #         if reinstalar_oracle == '1':
-        #             # Método que realiza a instalação
-        #             alocar_instaladororcl(usuario)
-        #     else:
-        #         # Retorno para o implantador
-        #         print(Fore.WHITE + Back.BLACK +'Por favor, selecione uma opção válida...')
-    except FileNotFoundError:
-        # Se não achar a pasta do Oracle, instalamos diretamente sem perguntas pro implantador
+    
+    print(Fore.RESET+Back.RESET+'\n\n\n---------Iniciando instalação do Oracle Client----------\n\n\n')
+    # Tentar chegar a pasta da isntalaçao do oracle para verificar se ja existe
+    if verificar_install('oracle'):
+        print('Oracle já instalado.')
+        time.sleep(2)              
+            # os.chdir('/usr/lib/oracle/18.3')
+            # Retorno ao implantador
+            # print('Instalação do Oracle Client já existente em: /usr/lib/oracle/18.3\n\n\n')
+            # # Criando a estrutura de repetição para verificar se quer re-instalar o oracle
+            # sair_reinstal =0
+            # while sair_reinstal ==0:
+            #     # Pergunta que controla a re-instalação
+            #     reinstalar_oracle = input(Fore.WHITE + Back.BLUE +'Deseja instalar novamente o Oracle?\n (1) Sim (2) Não: ')
+            #     # Controle que garante que o usuário escolha 1 ou 2    
+            #     if reinstalar_oracle == '1' or reinstalar_oracle == '2':
+            #         # Se a resposta do implantador atender 1 ou 2, saimos da estrutura de repetição
+            #         sair_reinstal = 1
+            #         # Se a resposta for 1, ele re-instala
+            #         if reinstalar_oracle == '1':
+            #             # Método que realiza a instalação
+            #             alocar_instaladororcl(usuario)
+            #     else:
+            #         # Retorno para o implantador
+    else:
         alocar_instaladororcl(usuario)
+            #         print(Fore.WHITE + Back.BLACK +'Por favor, selecione uma opção válida...')
+            # except FileNotFoundError:
+            # Se não achar a pasta do Oracle, instalamos diretamente sem perguntas pro implantador
+        
 
     # Verificar a instalação do node, caso inexistente instalar
     print(Fore.RESET + Back.RESET +'\n\n\n----------Iniciando instalação do Node----------\n\n\n')
@@ -504,5 +530,6 @@ def instalar_prerequisitos():
         
 instalar_prerequisitos()
 
-print(Fore.GREEN+'Fim da instalação dos pré requisitos e módulos em node. Continuar os procedimentos a partir do item 9.\n\n')
+print(Fore.GREEN+'Fim da instalação dos pré requisitos e módulos em node.'+
+'Continuar os procedimentos a partir do 9º passo do manual: http://jira.prodatamobility.com.br:8090/confluence/pages/viewpage.action?pageId=26149257\n\n')
 print(Fore.RESET)
