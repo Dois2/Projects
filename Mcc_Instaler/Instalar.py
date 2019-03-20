@@ -130,7 +130,7 @@ def escrever_arquivo_configjson(usuario):
         ip = input(Fore.WHITE+ Back.BLUE +'Insira um ip para o banco MongoDB: ')
         # print(Fore.RESET+Back.RESET)
         porta = '27017'
-        nome_do_banco = '{}_conf'.format(usuario)
+        nome_do_banco = usuario
         linha = '"database": "mongodb://{}:{}@{}:{}/{}"'.format(user, senha, ip, porta, nome_do_banco)
 
         # Alocando o texto a ser escrito na variavel escrever
