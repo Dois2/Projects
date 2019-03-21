@@ -430,29 +430,10 @@ def instalar_prerequisitos():
     if verificar_install('oracle'):
         print('Oracle já instalado.')
         time.sleep(2)              
-            # os.chdir('/usr/lib/oracle/18.3')
-            # Retorno ao implantador
-            # print('Instalação do Oracle Client já existente em: /usr/lib/oracle/18.3\n\n\n')
-            # # Criando a estrutura de repetição para verificar se quer re-instalar o oracle
-            # sair_reinstal =0
-            # while sair_reinstal ==0:
-            #     # Pergunta que controla a re-instalação
-            #     reinstalar_oracle = input(Fore.WHITE + Back.BLUE +'Deseja instalar novamente o Oracle?\n (1) Sim (2) Não: ')
-            #     # Controle que garante que o usuário escolha 1 ou 2    
-            #     if reinstalar_oracle == '1' or reinstalar_oracle == '2':
-            #         # Se a resposta do implantador atender 1 ou 2, saimos da estrutura de repetição
-            #         sair_reinstal = 1
-            #         # Se a resposta for 1, ele re-instala
-            #         if reinstalar_oracle == '1':
-            #             # Método que realiza a instalação
-            #             alocar_instaladororcl(usuario)
-            #     else:
-            #         # Retorno para o implantador
+           
     else:
         alocar_instaladororcl(usuario)
-            #         print(Fore.WHITE + Back.BLACK +'Por favor, selecione uma opção válida...')
-            # except FileNotFoundError:
-            # Se não achar a pasta do Oracle, instalamos diretamente sem perguntas pro implantador
+           
         
 
     # Verificar a instalação do node, caso inexistente instalar
@@ -461,20 +442,6 @@ def instalar_prerequisitos():
     if testar_node(usuario):
         print('\n')
 
-            # TODO
-            # FIXME
-        # Mesma estrutura de repetição para o Oracle foi utilizada para o node
-        # sair_reinstalnode = 0
-        
-        # while sair_reinstalnode ==0:
-        #     pergunta = input(Fore.WHITE + Back.BLUE +'Deseja instalar novamente o Node?\n'
-        #                      '(1)Sim (2)Não: ')
-        #     if pergunta == '1' or pergunta == '2':
-        #         sair_reinstalnode = 1
-        #         if pergunta =='1':
-        #             alocar_instaladornode(usuario)
-        #     else:
-        #         print(Fore.WHITE + Back.BLACK +'Insira uma opção válida!')
     else:
         alocar_instaladornode(usuario)
         print(Fore.GREEN+ '\nNode instalado com sucesso.')
