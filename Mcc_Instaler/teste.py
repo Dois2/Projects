@@ -24,11 +24,23 @@ def verificar_install(nome_pacote):
             else:
                 return False
                 
+def get_user_mongo():
+    user = get_user():
+    mongo_db = user.split('.')
+    
+    
+
+def get_user():
+    arquivo = 'whoami.txt'
+    shell('whoami > {}'.format(arquivo))
+    file = open(arquivo, 'r')
+    for line in file:
+        user = line.split('\n')
+        
+        return user[0] 
 
 
-pacote = 'epel-releaseasdasdasdasdasd'
 
-if verificar_install(pacote):
-    print('true')
-else:
-    print('false')
+
+
+print(get_user())
