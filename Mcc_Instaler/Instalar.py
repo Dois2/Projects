@@ -2,6 +2,14 @@ import os
 import time
 from colorama import Fore, Back
 
+def get_user():
+    arquivo = 'whoami.txt'
+    shell('whoami > {}'.format(arquivo))
+    file = open(arquivo, 'r')
+    for line in file:
+        user = line.split('\n')
+        
+        return user[0]
 
 def verificar_install(nome_pacote):
     nome_teste = 'teste.txt'
@@ -14,6 +22,9 @@ def verificar_install(nome_pacote):
                 return True
             else:
                 return False
+
+
+    
 
 # Método utilizado para verificar a execução dos comandos no shell - OK
 def shell(comando):
@@ -43,7 +54,8 @@ def testar_node(usuario):
     # Se o arquivo tiver algo escrito, o método retorna um True, caso contrário ele retorna False
     if arquivo.__len__() > 0:
         versao_do_node = arquivo[0]
-        print('Node já instalado.\n     ->Versão: {}'.format(versao_do_node))
+        print(Fore.GREEN+'Node já instalado.\n     ->Versão: {}'.format(versao_do_node))
+        print(Fore.RESET + Back.RESET)
         return True
     else:
         return False
@@ -281,6 +293,8 @@ def alocar_instaladororcl(usuario):
 # ------------------------------------------------------------------------------------------------
 def instalar_prerequisitos():
 
+    usuario = get_user()
+    print(usuario + 'teste')
     # Boas vindas ao instalador
     print(Fore.RESET + Back.RESET +'Bem-vindo ao instalador do MCC!\n'
           'Por favor, insira as informações corretas para que a instalação ocorra corretamente.\n Preste atenção nos logs, alguymas etapas precisam da sua confirmação com Y ou N.\n'
@@ -288,20 +302,29 @@ def instalar_prerequisitos():
           '\nInstalador desenvolvido por: Lucas Silveira Vieira (Matriz) - Prodata Mobility Brasil.')
 
     while True:
-        usuario = input(Fore.WHITE + Back.BLUE +'Insira o usuário da VM em que será realizado a instalação.'
-        +'\nAtenção: O usuário deve ser equivalente ao login utilizado no software BITVISE.\n'
-        +'Digite o usuário: ')
         try:
-            os.chdir('/home/{}'.format(usuario))
-            print(Fore.GREEN + Back.BLACK +'\n\nUsuário válido')
-            print(Fore.RESET+Back.RESET)
-            break
-        except FileNotFoundError:
-            print('Por favor insira um usuário válido.')
+            usuario_pergunta = int(input(Fore.WHITE + Back.BLUE +'Detectado o usuário: {}'.format(usuario)
+            +'\nDeseja realizar a instalação no usuário detectado? (1)Sim (2)Não. \n'
+            +'Digite sua resposta: '))
+            print(Fore.RESET + Back.RESET)
+        except ValueError: 
+            print('Insira um valor numérico em sua resposta!')
+            time.sleep(2)
+        
+        try:
 
-
-
-
+            if usuario_pergunta == 1:
+                print('\nIniciando o processo de instalação no usuário {}'.format(usuario))
+                break
+            elif usuario_pergunta == 2:
+                print('\nPor favor, acesse a máquina com o usuário desejado.')
+                time.sleep(3)
+                return
+            else:
+                print('\nPor favor responda com "1" ou "2".\n') 
+                time.sleep(3)
+        except UnboundLocalError:
+            print('')
 
 
     # Definição dos diretórios com base no usuário informado
@@ -309,13 +332,49 @@ def instalar_prerequisitos():
     caminho_mcc_lib = '/home/{}/mcc/lib'.format(usuario)
     caminho_mcc_bin = '/home/{}/mcc/bin'.format(usuario)
 
+    caminho_private = '/home/{}/key/'.format(usuario)
+    caminho_public = '/home/{}/public/'.format(usuario)
+
+
+    nome_key = 'privatekey.pem'
+    nome_public = 'publickey.pem'
+
+    alocar_public = 'Mcc_Instaler/{}'.format(nome_public)
+    
+    alocar_key = 'Mcc_Instaler/{}'.format(nome_key)
+    
+    while True:
+        try:
+            os.chdir(caminho_private)
+            os.chdir('~/')
+            shell('cp {} {}'.format(alocar_key, caminho_private))
+            break
+        except FileNotFoundError:
+            print('Caminho "{}" não definido, realizando criação...'.format(caminho_private))
+            shell('mkdir {}'.format(caminho_private))
+            shell('cp Mcc_Instaler/privatekey.pem {}'.format(caminho_private))
+            time.sleep(2)
+    
+    while True:
+        try:
+            os.chdir(caminho_public)
+            os.chdir
+            shell('cp {} {}'.format(alocar_public, caminho_public))
+            break
+        except FileNotFoundError:
+            print('Caminho "{}" não definido, realizando criação...'.format(caminho_public))
+            shell('mkdir {}'.format(caminho_public))
+            shell('cp {} {}'.format(alocar_key, caminho_private))
+            time.sleep(2)
+        
 
     print('Iniciando procedimento de criação das pastas do MCC...\n\n\n')
     time.sleep(3)
 # Verificação e criação do caminho mcc
     try:
         os.chdir(caminho_mcc)
-        print('Diretório {} já existente.'.format(caminho_mcc))
+        print(Fore.GREEN +'Diretório {} já existente.'.format(caminho_mcc))
+        print(Fore.RESET + Back.RESET)
     except FileNotFoundError:
         print('Não foi localizado o caminho ~/mcc.\nRealizando a criação do diretório.')
         shell('mkdir {}'.format(caminho_mcc))
@@ -328,7 +387,8 @@ def instalar_prerequisitos():
         # Comando para trocar para o diretório mcc/lib
         os.chdir(caminho_mcc_lib)
         # Retorno para o implantador
-        print('Diretório {} existente'.format(caminho_mcc_lib))
+        print(Fore.GREEN +'Diretório {} existente'.format(caminho_mcc_lib))
+        print(Fore.RESET + Back.RESET)
     # Tratando a a exception gerada caso não exista o diretório mcc/lib
     except FileNotFoundError:
         # Retorno para o implantador
@@ -345,7 +405,8 @@ def instalar_prerequisitos():
         # ir até o diretório mcc/bin
         os.chdir(caminho_mcc_bin)
         # Retorno para o implantador
-        print('Diretório {} existente'.format(caminho_mcc_bin))
+        print(Fore.GREEN+ 'Diretório {} existente'.format(caminho_mcc_bin))
+        print(Fore.RESET + Back.RESET)
         # Tratando a exception gerada caso nao exista o diretório mcc/bin
     except FileNotFoundError:
         # Retorno para o implantador
@@ -367,17 +428,6 @@ def instalar_prerequisitos():
     print('\n\n\n----------Atualizando o pacote YUM----------\n\n\n')
     # Temporizador para que seja possível acompanhar o log em tempo real
     time.sleep(2)
-    
-    # Não realizar a a instalação do YUM.  
-    
-    # # Comando para atualizar o YUM
-    # if shell('sudo yum update'):
-    #     # Retorno para o implantador
-    #     print(Fore.GREEN + '\n\nGerenciador YUM atualizado com sucesso.')
-    #     # Temporizador para acompanhar o log em tempo real
-    #     time.sleep(2)
-    # else:
-    #     print(Fore.RED+'\n\nErro ao atualizar o gerenciador YUM.')
 
     # Realizar a instalação do editor de textos nano
     print(Fore.RESET+Back.RESET+'\n\n\n----------Iniciando instalação do Nano----------\n\n\n')
@@ -390,15 +440,16 @@ def instalar_prerequisitos():
 
     # checar a instalação do epel-release com o npm -na
     if verificar_install('epel-release'):
-        print('Epel-release já instalado.')
+        print(Fore.GREEN+'Epel-release já instalado.')
+        print(Fore.RESET + Back.RESET)
         time.sleep(2)
     else:
         shell('sudo yum install epel-release.noarch')
         print(Fore.GREEN+'Epel Release instalado com sucesso.\n')
 
-
-    print(Fore.RESET+Back.RESET+'\n\n\n----------Iniciando instalação do PIP----------\n\n\n')
     # Realizar a instalação do python-pip
+    print(Fore.RESET+Back.RESET+'\n\n\n----------Iniciando instalação do PIP----------\n\n\n')
+    
     # Temporizador para conseguir acompanhar o log em tempo real
     time.sleep(3)
     shell('sudo yum install python-pip')
@@ -428,7 +479,8 @@ def instalar_prerequisitos():
     print(Fore.RESET+Back.RESET+'\n\n\n---------Iniciando instalação do Oracle Client----------\n\n\n')
     # Tentar chegar a pasta da isntalaçao do oracle para verificar se ja existe
     if verificar_install('oracle'):
-        print('Oracle já instalado.')
+        print(Fore.GREEN + 'Oracle já instalado.')
+        print(Fore.RESET + Back.RESET)
         time.sleep(2)              
            
     else:
@@ -472,7 +524,6 @@ def instalar_prerequisitos():
         verdaccio = input(Fore.WHITE + Back.BLUE +'Insira o acesso ao verdaccio da Martonis: ')
         shell('npm set registry {}'.format(verdaccio))
         shell('npm login')
-
 
         print(Fore.WHITE + Back.BLACK +'Iniciando a instalação do módulo STARTUP.\n')
         shell('npm i -g mcc.startup')
