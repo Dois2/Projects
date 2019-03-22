@@ -25,9 +25,12 @@ def verificar_install(nome_pacote):
                 return False
                 
 def get_user_mongo():
-    user = get_user():
+    user = get_user()
     mongo_db = user.split('.')
+    usuario_certo = mongo_db[0] + '_' + mongo_db[1]
     
+    print(usuario_certo)
+
     
 
 def get_user():
@@ -43,4 +46,4 @@ def get_user():
 
 
 
-print(get_user())
+get_user_mongo()

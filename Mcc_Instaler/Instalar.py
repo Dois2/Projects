@@ -2,6 +2,12 @@ import os
 import time
 from colorama import Fore, Back
 
+def get_user_mongo():
+    user = get_user()
+    mongo_db = user.split('.')
+    usuario_certo = mongo_db[0] + '_' + mongo_db[1]
+    return usuario_certo
+
 def get_user():
     arquivo = 'whoami.txt'
     shell('whoami > {}'.format(arquivo))
@@ -142,7 +148,12 @@ def escrever_arquivo_configjson(usuario):
         ip = input(Fore.WHITE+ Back.BLUE +'Insira um ip para o banco MongoDB: ')
         # print(Fore.RESET+Back.RESET)
         porta = '27017'
-        nome_do_banco = usuario
+        try: 
+            nome_do_banco = get_user_mongo
+        except IndexError:
+            print('Nome de usuário no sigular,  banco referenciado somente como {}'.format(usuario))
+            nome_do_banco = usuario
+
         linha = '"database": "mongodb://{}:{}@{}:{}/{}"'.format(user, senha, ip, porta, nome_do_banco)
 
         # Alocando o texto a ser escrito na variavel escrever
@@ -294,7 +305,7 @@ def alocar_instaladororcl(usuario):
 def instalar_prerequisitos():
 
     usuario = get_user()
-    print(usuario + 'teste')
+    
     # Boas vindas ao instalador
     print(Fore.RESET + Back.RESET +'Bem-vindo ao instalador do MCC!\n'
           'Por favor, insira as informações corretas para que a instalação ocorra corretamente.\n Preste atenção nos logs, alguymas etapas precisam da sua confirmação com Y ou N.\n'
@@ -346,25 +357,21 @@ def instalar_prerequisitos():
     while True:
         try:
             os.chdir(caminho_private)
-            os.chdir('~/')
-            shell('cp {} {}'.format(alocar_key, caminho_private))
+            os.chdir('/home/')
             break
         except FileNotFoundError:
             print('Caminho "{}" não definido, realizando criação...'.format(caminho_private))
             shell('mkdir {}'.format(caminho_private))
-            shell('cp Mcc_Instaler/privatekey.pem {}'.format(caminho_private))
             time.sleep(2)
     
     while True:
         try:
             os.chdir(caminho_public)
-            os.chdir
-            shell('cp {} {}'.format(alocar_public, caminho_public))
+            os.chdir('/home/')
             break
         except FileNotFoundError:
             print('Caminho "{}" não definido, realizando criação...'.format(caminho_public))
             shell('mkdir {}'.format(caminho_public))
-            shell('cp {} {}'.format(alocar_key, caminho_private))
             time.sleep(2)
         
 
@@ -538,6 +545,11 @@ def instalar_prerequisitos():
         print('\n\nIniciando a instalação do módulo PORTAL.\n')
         shell('npm i -g mcc.portal')
         print(Fore.GREEN +'Fim da instalação do módulo PORTAL\n\n')
+        print(Fore.RESET)
+
+        print('\n\nIniciando a instalação do módulo PROCESSOR.\n')
+        shell('npm i -g mcc.processor')
+        print(Fore.GREEN +'Fim da instalação do módulo PROCESSOR\n\n')
         print(Fore.RESET)
 
         print('\n\nIniciando a instalação do módulo GAMA.\n')
