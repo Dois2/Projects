@@ -501,7 +501,7 @@ def instalar_prerequisitos():
 instalar_prerequisitos()
 
 print(Fore.GREEN+'Fim da instalação dos pré requisitos e módulos em node.'+
-'Continuar os procedimentos a partir do 9º passo do manual: http://jira.prodatamobility.com.br:8090/confluence/pages/viewpage.action?pageId=26149257\n\n')
+'Continuar os procedimentos de edicao das variaveis de ambiente a partir manual: http://jira.prodatamobility.com.br:8090/confluence/pages/viewpage.action?pageId=26149257\n\n')
 print(Fore.RESET)
 
 
