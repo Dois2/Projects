@@ -533,17 +533,17 @@ def instalar_prerequisitos():
         shell('npm login')
 
         print(Fore.WHITE + Back.BLACK +'Iniciando a instalação do módulo STARTUP.\n')
-        shell('npm i -g mcc.startup')
+        shell('npm i -g mcc.startup@19.3.1')
         print(Fore.GREEN +'Fim da instalação do módulo STARTUP\n\n')
         print(Fore.RESET)
 
         print('\n\nIniciando a instalação do módulo BROKER.\n')
-        shell('npm i -g mcc.broker')
+        shell('npm i -g mcc.broker@19.1.3')
         print(Fore.GREEN +'Fim da instalação do módulo BROKER\n\n')
         print(Fore.RESET)
 
         print('\n\nIniciando a instalação do módulo PORTAL.\n')
-        shell('npm i -g mcc.portal')
+        shell('npm i -g mcc.portal@19.1.1')
         print(Fore.GREEN +'Fim da instalação do módulo PORTAL\n\n')
         print(Fore.RESET)
 
@@ -553,7 +553,7 @@ def instalar_prerequisitos():
         print(Fore.RESET)
 
         print('\n\nIniciando a instalação do módulo GAMA.\n')
-        shell('npm i -g msi.gama')
+        shell('npm i -g msi.gama@0.3.38')
         print(Fore.GREEN +'Fim da instalação do módulo GAMA\n\n')
         print(Fore.RESET)
     else:

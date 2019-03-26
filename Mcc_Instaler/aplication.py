@@ -1,5 +1,5 @@
 import time
-from Mcc_Instaler import InstalManager as im
+
 import os
 
 def fluxo_instalacao():
