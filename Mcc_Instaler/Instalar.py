@@ -446,6 +446,10 @@ def instalar_prerequisitos():
     print(Fore.RESET+Back.RESET+'\n\n\n----------Iniciando instalação do Epel Release----------\n\n\n')
 
     # checar a instalação do epel-release com o npm -na
+    
+    os.chdir('/home/{}'.format(usuario))
+
+
     if verificar_install('epel-release'):
         print(Fore.GREEN+'Epel-release já instalado.')
         print(Fore.RESET + Back.RESET)
