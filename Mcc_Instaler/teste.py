@@ -33,17 +33,19 @@ def get_user_mongo():
 
     
 
-def get_user():
+def get_user_new_mongo():
     arquivo = 'whoami.txt'
     shell('whoami > {}'.format(arquivo))
     file = open(arquivo, 'r')
     for line in file:
-        user = line.split('\n')
+        user = line.split('.')
+        nome_certo = user[0] + '_' + user[1]
+        return nome_certo
         
-        return user[0] 
+       
 
 
 
 
 
-get_user_mongo()
+get_user()

@@ -8,6 +8,15 @@ def get_user_mongo():
     usuario_certo = mongo_db[0] + '_' + mongo_db[1]
     return usuario_certo
 
+def get_user_new_mongo():
+    arquivo = 'whoami.txt'
+    shell('whoami > {}'.format(arquivo))
+    file = open(arquivo, 'r')
+    for line in file:
+        user = line.split('.')
+        nome_certo = user[0] + '_' + user[1]
+        return nome_certo
+
 def get_user():
     arquivo = 'whoami.txt'
     shell('whoami > {}'.format(arquivo))
@@ -149,7 +158,7 @@ def escrever_arquivo_configjson(usuario):
         # print(Fore.RESET+Back.RESET)
         porta = '27017'
         try: 
-            nome_do_banco = get_user_mongo
+            nome_do_banco = get_user_new_mongo
         except IndexError:
             print('Nome de usuário no sigular,  banco referenciado somente como {}'.format(usuario))
             nome_do_banco = usuario
