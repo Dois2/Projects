@@ -158,7 +158,7 @@ def escrever_arquivo_configjson(usuario):
         # print(Fore.RESET+Back.RESET)
         porta = '27017'
         try: 
-            nome_do_banco = get_user_new_mongo
+            nome_do_banco = get_user_new_mongo()
         except IndexError:
             print('Nome de usuário no sigular,  banco referenciado somente como {}'.format(usuario))
             nome_do_banco = usuario
