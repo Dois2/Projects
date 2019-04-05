@@ -2,16 +2,22 @@ import os
 import time
 from colorama import Fore, Back
 
-def get_user_mongo():
-    user = get_user()
-    mongo_db = user.split('.')
+def get_user_mongo(usuario):
+    
+    mongo_db = usuario.split('.')
     usuario_certo = mongo_db[0] + '_' + mongo_db[1]
     return usuario_certo
 
 def get_user_new_mongo():
     arquivo = 'whoami.txt'
-    shell('whoami > {}'.format(arquivo))
+    shell('sudo whoami > {}'.format(arquivo))
+    shell('sudo chmod 777 ~/{}'.format(arquivo))
+    time.sleep(2)
+    print('chmod on')
+    time.sleep(2)
     file = open(arquivo, 'r')
+    print('abri o arquivo')
+    time.sleep(2)
     for line in file:
         user = line.split('.')
         nome_certo = user[0] + '_' + user[1]
@@ -158,7 +164,7 @@ def escrever_arquivo_configjson(usuario):
         # print(Fore.RESET+Back.RESET)
         porta = '27017'
         try: 
-            nome_do_banco = get_user_new_mongo()
+            nome_do_banco = get_user_mongo(usuario)
         except IndexError:
             print('Nome de usuário no sigular,  banco referenciado somente como {}'.format(usuario))
             nome_do_banco = usuario
