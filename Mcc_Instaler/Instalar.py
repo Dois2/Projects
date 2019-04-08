@@ -575,6 +575,8 @@ def instalar_prerequisitos():
         shell('npm i -g msi.gama@0.3.38')
         print(Fore.GREEN +'Fim da instalação do módulo GAMA\n\n')
         print(Fore.RESET)
+
+        shell('npm i -g forever')
     else:
         # Caso não for possível alocar a ~/mcc, damos o retorno para o Implantador
         # OBSERVAÇÂO - Podemos realizar uma nova verificação neste ponto das pastas ~/mcc e ~/mcc/lib e ~/mcc/bin
