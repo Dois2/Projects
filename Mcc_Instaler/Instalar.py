@@ -160,16 +160,17 @@ def escrever_arquivo_configjson(usuario):
 
 
         senha = 'Pr0d%40t%40'
-        ip = input(Fore.WHITE+ Back.BLUE +'Insira um ip para o banco MongoDB: ')
+        ip = 'cluster01-jmpzs.mongodb.net' 
+        # input(Fore.WHITE+ Back.BLUE +'Insira um ip para o banco MongoDB: ')
         # print(Fore.RESET+Back.RESET)
         porta = '27017'
         try: 
-            nome_do_banco = get_user_mongo(usuario)
+            nome_do_banco = get_user_mongo(usuario).capitalize
         except IndexError:
             print('Nome de usuário no sigular,  banco referenciado somente como {}'.format(usuario))
-            nome_do_banco = usuario
+            nome_do_banco = usuario.capitalize
 
-        linha = '"database": "mongodb://{}:{}@{}:{}/{}"'.format(user, senha, ip, porta, nome_do_banco)
+        linha = '"database": "mongodb+srv://{}:{}@{}/{}?retryWrites=true""'.format(user, senha, ip, nome_do_banco)
 
         # Alocando o texto a ser escrito na variavel escrever
         escrever = '{\n' \
