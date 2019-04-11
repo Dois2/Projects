@@ -5,7 +5,7 @@ from colorama import Fore, Back
 def get_user_mongo(usuario):
     
     mongo_db = usuario.split('.')
-    usuario_certo = mongo_db[0] + '_' + mongo_db[1]
+    usuario_certo =  mongo_db[1] + '_MCC'
     return usuario_certo
 
 def get_user_new_mongo():
