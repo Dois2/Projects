@@ -551,13 +551,14 @@ def instalar_prerequisitos():
         shell('npm set registry {}'.format(verdaccio))
         shell('npm login')
 
-        print(Fore.WHITE + Back.BLACK +'Iniciando a instalação do módulo STARTUP.\n')
-        shell('npm i -g mcc.startup@19.3.1')
-        print(Fore.GREEN +'Fim da instalação do módulo STARTUP\n\n')
-        print(Fore.RESET)
+        # Os valores do Mcc-startup voram removidos do instalador
+        # print(Fore.WHITE + Back.BLACK +'Iniciando a instalação do módulo STARTUP.\n')
+        # shell('npm i -g mcc.startup@19.3.1')
+        # print(Fore.GREEN +'Fim da instalação do módulo STARTUP\n\n')
+        # print(Fore.RESET)
 
         print('\n\nIniciando a instalação do módulo BROKER.\n')
-        shell('npm i -g mcc.broker@19.1.3')
+        shell('npm i -g mcc.broker@19.4.1')
         print(Fore.GREEN +'Fim da instalação do módulo BROKER\n\n')
         print(Fore.RESET)
 
@@ -567,7 +568,7 @@ def instalar_prerequisitos():
         print(Fore.RESET)
 
         print('\n\nIniciando a instalação do módulo PROCESSOR.\n')
-        shell('npm i -g mcc.processor')
+        shell('npm i -g mcc.processor@19.4.1')
         print(Fore.GREEN +'Fim da instalação do módulo PROCESSOR\n\n')
         print(Fore.RESET)
 
@@ -585,7 +586,7 @@ def instalar_prerequisitos():
 instalar_prerequisitos()
 
 print(Fore.GREEN+'Fim da instalação dos pré requisitos e módulos em node.'+
-'Continuar os procedimentos de edicao das variaveis de ambiente a partir manual: http://jira.prodatamobility.com.br:8090/confluence/pages/viewpage.action?pageId=26149257\n\n')
+'Continuar os procedimentos a partir da edição das variáveis de ambiente.')
 print(Fore.RESET)
 
 
