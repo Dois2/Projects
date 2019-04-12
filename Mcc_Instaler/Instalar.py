@@ -156,16 +156,16 @@ def escrever_arquivo_configjson(usuario):
 
         # Definindo o: Usuário, senha, ip, porta e nome do banco
         
-        user = 'prodata'
-
-
-        senha = 'Pr0d%40t%40'
+        user = input(Back.BLUE+"Insira o usuário para acessar o MongoDB: ")
+        senha =  input(Back.BLUE+"Insira a senha para acessar o MongoDB: ")
+        print(Back.RESET)
         ip = 'cluster01-jmpzs.mongodb.net' 
         # input(Fore.WHITE+ Back.BLUE +'Insira um ip para o banco MongoDB: ')
         # print(Fore.RESET+Back.RESET)
         porta = '27017'
         try: 
             nome_do_banco = get_user_mongo(usuario)
+            nome_do_banco =nome_do_banco.upper()
         except IndexError:
             print('Nome de usuário no sigular,  banco referenciado somente como {}'.format(usuario))
             nome_do_banco = usuario.capitalize
